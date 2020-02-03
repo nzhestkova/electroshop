@@ -1,0 +1,36 @@
+@font: "Book Antiqua", serif;
+.login {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3em;
+  font-family: @font;
+  font-size: 1.2em;
+  &-form {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    &-main {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid black;
+      padding: 0.5em 1em;
+    }
+    &-field {
+      display: flex;
+      flex-direction: column;
+      padding: 0.5em;
+    }
+    &-submit {
+      margin: 1em auto;
+      padding: 0.5em 1em;
+      font-family: @font;
+      font-size: 1em;
+    }
+  }
+  &-home {
+    margin: 1em auto;
+    &-link {
+      font-style: italic;
+    }
+  }
+}
