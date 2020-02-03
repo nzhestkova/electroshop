@@ -1,10 +1,12 @@
 export class Users {
-  login: number;
+  userID: number;
+  login: string;
   password: string;
-  userName: string;
-  constructor(recordBookNumber: number, surname: string, name: string) {
-    this.login = recordBookNumber;
+  username: string;
+  constructor(userID: number, login: string, surname: string, name: string) {
+    this.userID = userID;
+    this.login = login;
     this.password = surname;
-    this.userName = name;
+    this.username = name;
   }
 }

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { Users } from "../../model/users";
 import { GetUsersService } from "../get-users/get-users.service";
 
 @Component({
@@ -25,16 +26,14 @@ export class LoginPageComponent {
   });
 
   login(): void {
-    if (this.loginForm.valid) {
-      const login = this.loginForm.controls["login"].value;
-      const password = this.loginForm.controls["password"].value;
-      const serverAnswer = this.usersService.importList(login, password);
-      console.log(serverAnswer);
-      if (serverAnswer) {
-        this.router.navigate([`welcome/${this.loginForm.controls["login"].value}`]).then();
-        return;
+    const login = this.loginForm.controls["login"].value;
+    const password = this.loginForm.controls["password"].value;
+    this.usersService.importList(login, password).subscribe((data: Users) => {
+      if (data) {
+        this.router.navigate([`${data.userID}`]).then();
+      } else {
+        console.log(`Неправильная пара логин-пароль`);
       }
-      console.log(`Несуществующая пара - логин и пароль`);
-    }
+    });
   }
 }

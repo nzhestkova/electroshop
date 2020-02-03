@@ -26,9 +26,15 @@ app.get("/", function (request, response) {
 });
 
 app.get("/users", function (request, response) {
-  if (request.query) {
+  if (request.query.login && request.query.password) {
     const user = userList.list.find(item =>
       item.login === request.query.login && item.password === request.query.password);
+    response.send(user);
+    response.end();
+  } else if (request.query.id) {
+    const searchID = +request.query.id;
+    const user = userList.list.find(item => item.userID === searchID);
+    console.log(user);
     response.send(user);
     response.end();
   } else {
