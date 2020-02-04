@@ -4,19 +4,19 @@
     <span *ngIf="user">Привет, {{user.username}}! </span>
     <span>Добро пожаловать в магазин.</span>
     <a *ngIf="!user" routerLink="login" class="menu-text-link">Login</a>
+    <a *ngIf="!user" routerLink="register" class="menu-text-link">Register</a>
     <a *ngIf="user" routerLink="logout" class="menu-text-link">Logout</a>
-    <button (click)="test()">sdfg</button>
   </div>
 </div>
 <div class="products">
   <table class="products-list">
     <thead>
-    <tr>
-      <th>Товар</th>
-      <th>Стоимость</th>
-    </tr>
     </thead>
     <tbody>
+    <tr *ngFor="let product of productList">
+      <td class="products-list-cell">{{product.title}}</td>
+      <td class="products-list-cell">{{product.price | currency}}</td>
+    </tr>
     </tbody>
   </table>
 </div>

@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { Users } from "../../../model/users";
 
 @Injectable({
   providedIn: "root"
@@ -12,6 +13,10 @@ export class GetUsersService {
 
   importList(login: string, password: string): Observable<Object> {
     return this._http.get(this.url, { params: {login: login, password: password} });
+  }
+
+  registerNewUser(newUser: Users): Observable<Object> {
+    return this._http.post(this.url, newUser);
   }
 
   userByID(id: string): Observable<Object> {

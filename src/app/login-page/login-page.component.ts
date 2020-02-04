@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Users } from "../../model/users";
-import { GetUsersService } from "../get-users/get-users.service";
+import { GetUsersService } from "../services/get-users/get-users.service";
 
 @Component({
   selector: "app-login-page",
