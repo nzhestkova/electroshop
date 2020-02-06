@@ -22,4 +22,8 @@ export class GetUsersService {
   userByID(id: string): Observable<Object> {
     return this._http.get(this.url, { params: {id: `${id}`} });
   }
+
+  updateUserInformation(newUser: Users): Observable<Object> {
+    return this._http.put(this.url, newUser);
+  }
 }

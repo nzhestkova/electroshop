@@ -11,6 +11,8 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { RegisterComponent } from "./register/register.component";
 import { GetUsersService } from "./services/get-users/get-users.service";
 import { ShopcartPageComponent } from "./shopcart-page/shopcart-page.component";
+import { EditPersonalDataComponent } from "./user-page/edit-personal-data/edit-personal-data.component";
+import { UserPageComponent } from "./user-page/user-page.component";
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { ShopcartPageComponent } from "./shopcart-page/shopcart-page.component";
     ShopcartPageComponent,
     PageNotFoundComponent,
     RegisterComponent,
+    UserPageComponent,
+    EditPersonalDataComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,10 +3,10 @@ export class Users {
   login: string;
   password: string;
   username: string;
-  constructor(userID: number, login: string, surname: string, name: string) {
+  constructor(userID: number, login: string, password: string, name: string) {
     this.userID = userID;
     this.login = login;
-    this.password = surname;
+    this.password = password;
     this.username = name;
   }
 }

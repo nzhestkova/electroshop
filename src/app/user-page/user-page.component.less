@@ -1,0 +1,34 @@
+@font: "Book Antiqua", serif;
+.link {
+  color: #000097;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 0.8em;
+  margin-left: 1em;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+  font-family: @font;
+  font-size: 1.2em;
+}
+.profile {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1em;
+  &-head {
+    margin: 1em 0 1em 5em;
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+}
+.password-form-field {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}

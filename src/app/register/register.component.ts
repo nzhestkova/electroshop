@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       console.log("it's okay!");
       const body = new Users(1671677, this.registerForm.get("login").value,
-        this.registerForm.get("password").value, this.registerForm.get("userName.name").value + this.registerForm.get("userName.surname").value);
+        this.registerForm.get("password").value, `${this.registerForm.get("userName.name").value} ${this.registerForm.get("userName.surname").value}`);
       this.usersService.registerNewUser(body).subscribe((data: {message: string, userID: string}) => {
         console.log(data.message);
         this.router.navigate([`${data.userID}`]).then();
@@ -49,10 +49,10 @@ export class RegisterComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.registerForm.get("userName.name").setValue("Natasha");
-    this.registerForm.get("userName.surname").setValue("Zhestkova");
-    this.registerForm.get("login").setValue("natasha");
-    this.registerForm.get("password").setValue("qwertyfly1234");
-    this.registerForm.get("passwordConfirm").setValue("qwertyfly1234");
+    // this.registerForm.get("userName.name").setValue("Natasha");
+    // this.registerForm.get("userName.surname").setValue("Zhestkova");
+    // this.registerForm.get("login").setValue("natasha");
+    // this.registerForm.get("password").setValue("qwertyfly1234");
+    // this.registerForm.get("passwordConfirm").setValue("qwertyfly1234");
   }
 }

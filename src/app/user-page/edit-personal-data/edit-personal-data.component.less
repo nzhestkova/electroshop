@@ -1,0 +1,26 @@
+@font: "Book Antiqua", serif;
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  padding: 0.5em 0 0.5em 0.5em;
+  margin: 0.5em 0;
+  &-username {
+    display: flex;
+  }
+  &-field {
+    display: flex;
+    flex-direction: column;
+    margin: 0.2em;
+  }
+  &-controls {
+    display: flex;
+    margin: auto;
+    &-button {
+      font-family: @font;
+      font-size: 0.9em;
+      padding: 0.3em 1em;
+      margin: 0.5em;
+    }
+  }
+}

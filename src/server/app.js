@@ -63,10 +63,12 @@ app.post("/users", function (request, response) {
   response.end();
 });
 
-app.listen(port);
+app.put("/users", function (request, response) {
+  const newUser = request.body;
+  const currentInfo = userList.list.find(item => item.userID === newUser.userID);
+  currentInfo.username = newUser.username;
+  response.send({message: "Complete!"});
+  response.end();
+});
 
-// function registerNewUser(newUser) {
-//   fs.appendFile("users.json", JSON.stringify({ name: "data" }), function (error, data) {
-//     if (error) throw error; // если возникла ошибка
-//   });
-// }
+app.listen(port);

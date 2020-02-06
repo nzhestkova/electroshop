@@ -5,16 +5,19 @@ import { MainPageComponent } from "./main-page/main-page.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { RegisterComponent } from "./register/register.component";
 import { ShopcartPageComponent } from "./shopcart-page/shopcart-page.component";
+import { UserPageComponent } from "./user-page/user-page.component";
 
 
 const routes: Routes = [
   { path: "", component: MainPageComponent },
   { path: "login", component: LoginPageComponent },
   { path: "register", component: RegisterComponent },
+  { path: "shopcart", component: ShopcartPageComponent },
   { path: ":id", component: MainPageComponent},
   { path: ":id/logout", redirectTo: "/" },
-  { path: "shopcart", component: ShopcartPageComponent },
   { path: ":id/shopcart", component: ShopcartPageComponent },
+  { path: ":id/profile", component: UserPageComponent },
+  { path: ":id/profile/logout", redirectTo: "/" },
   { path: "**", component: PageNotFoundComponent},
 ];
 
