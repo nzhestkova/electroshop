@@ -49,10 +49,10 @@ export class RegisterComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    // this.registerForm.get("userName.name").setValue("Natasha");
-    // this.registerForm.get("userName.surname").setValue("Zhestkova");
-    // this.registerForm.get("login").setValue("natasha");
-    // this.registerForm.get("password").setValue("qwertyfly1234");
-    // this.registerForm.get("passwordConfirm").setValue("qwertyfly1234");
+    this.registerForm.get("userName.name").setValue("Natasha");
+    this.registerForm.get("userName.surname").setValue("Zhestkova");
+    this.registerForm.get("login").setValue("natasha");
+    this.registerForm.get("password").setValue("qwertyfly1234");
+    this.registerForm.get("passwordConfirm").setValue("qwertyfly1234");
   }
 }

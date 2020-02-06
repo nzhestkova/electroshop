@@ -10,7 +10,6 @@ import { GetUsersService } from "../services/get-users/get-users.service";
   selector: "app-main-page",
   templateUrl: "./main-page.component.html",
   styleUrls: ["./main-page.component.less"],
-  providers: [GetUsersService, GetProductsService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainPageComponent implements OnInit, OnDestroy {

@@ -9,7 +9,6 @@ import { GetUsersService } from "../services/get-users/get-users.service";
   selector: "app-user-page",
   templateUrl: "./user-page.component.html",
   styleUrls: ["./user-page.component.less"],
-  providers: [GetUsersService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserPageComponent implements DoCheck, OnDestroy {

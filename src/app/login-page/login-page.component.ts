@@ -8,7 +8,6 @@ import { GetUsersService } from "../services/get-users/get-users.service";
   selector: "app-login-page",
   templateUrl: "./login-page.component.html",
   styleUrls: ["./login-page.component.less"],
-  providers: [GetUsersService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginPageComponent {

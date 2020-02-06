@@ -7,8 +7,7 @@ import { GetUsersService } from "../../services/get-users/get-users.service";
 @Component({
   selector: "app-edit-personal-data",
   templateUrl: "./edit-personal-data.component.html",
-  styleUrls: ["./edit-personal-data.component.less"],
-  providers: [GetUsersService]
+  styleUrls: ["./edit-personal-data.component.less"]
 })
 export class EditPersonalDataComponent implements OnInit {
   @Input() userInformation: Users;
