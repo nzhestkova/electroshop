@@ -1,1 +1,54 @@
-
+@background-dark-theme: rgb(43, 46, 48);
+@background-light-theme: rgb(255, 255, 255);
+@text-light-color: lighten(black, 10%);
+@text-dark-color: darken(white, 20%);
+::-webkit-scrollbar {
+  width: 0;
+}
+.theme {
+  position: fixed;
+  width: 3em;
+  height: 3em;
+  right: 1em;
+  top: 1em;
+  border: 1px solid transparent;
+  border-radius: 100%;
+  outline: none;
+  &-icon {
+    line-height: 1em;
+    font-size: 1.5em;
+  }
+}
+.background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.5em;
+  overflow-y: scroll;
+}
+.light-theme {
+  background: @background-light-theme;
+  color: @text-light-color;
+  &-button {
+    background: darken(@background-dark-theme, 5%);
+    box-shadow: 0 0 0.5em darken(@background-dark-theme, 5%);;
+    &:hover {
+      background: darken(@background-dark-theme, 10%);
+      box-shadow: 0 0 1em darken(@background-dark-theme, 20%);
+    }
+  }
+}
+.dark-theme {
+  background: @background-dark-theme;
+  color: @text-dark-color;
+  &-button {
+    background: darken(@background-light-theme, 10%);
+    box-shadow: 0 0 0.5em darken(@background-light-theme, 10%);
+    &:hover {
+      background: darken(@background-light-theme, 5%);
+      box-shadow: 0 0 1em @background-light-theme;
+    }
+  }
+}

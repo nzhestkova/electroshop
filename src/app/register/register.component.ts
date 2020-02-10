@@ -1,13 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { Users } from "../../model/users";
+import { User } from "../../model/user";
 import { GetUsersService } from "../services/get-users/get-users.service";
 
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.less"]
+  styleUrls: ["./register.component.less"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterComponent implements OnInit {
   constructor(private router: Router, private usersService: GetUsersService) {
@@ -17,15 +18,18 @@ export class RegisterComponent implements OnInit {
       name: new FormControl("", [
         Validators.required,
         Validators.min(2),
+        Validators.pattern(/^[A-Za-zА-Яа-я]*$/),
       ]),
       surname: new FormControl("", [
         Validators.required,
         Validators.min(2),
+        Validators.pattern(/^[A-Za-zА-Яа-я]*$/),
       ]),
     }),
     login: new FormControl("", [
       Validators.required,
       Validators.min(4),
+      Validators.pattern(/^[A-Za-z_0-9]*$/),
     ]),
     password: new FormControl("", [
       Validators.required,
@@ -40,10 +44,9 @@ export class RegisterComponent implements OnInit {
   register(): void {
     if (this.registerForm.valid) {
       console.log("it's okay!");
-      const body = new Users(1671677, this.registerForm.get("login").value,
+      const body = new User(1671677, this.registerForm.get("login").value,
         this.registerForm.get("password").value, `${this.registerForm.get("userName.name").value} ${this.registerForm.get("userName.surname").value}`);
-      this.usersService.registerNewUser(body).subscribe((data: {message: string, userID: string}) => {
-        console.log(data.message);
+      this.usersService.registerNewUser(body).subscribe((data) => {
         this.router.navigate([`${data.userID}`]).then();
       });
     }

@@ -1,16 +1,17 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
-import { Users } from "../../../model/users";
+import { User } from "../../../model/user";
 import { GetUsersService } from "../../services/get-users/get-users.service";
 
 @Component({
   selector: "app-edit-personal-data",
   templateUrl: "./edit-personal-data.component.html",
-  styleUrls: ["./edit-personal-data.component.less"]
+  styleUrls: ["./edit-personal-data.component.less"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditPersonalDataComponent implements OnInit {
-  @Input() userInformation: Users;
+  @Input() userInformation: User;
   @Output() userUpdated = new EventEmitter();
   serviceSubscriber: Subscription;
   userNameForm = new FormGroup({
@@ -29,7 +30,7 @@ export class EditPersonalDataComponent implements OnInit {
 
   updateUserName(): void {
     if (this.userNameForm.valid) {
-      const newUser = new Users(
+      const newUser = new User(
         this.userInformation.userID,
         this.userInformation.login,
         this.userInformation.password,

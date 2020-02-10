@@ -1,10 +1,13 @@
 @font: "Book Antiqua", serif;
+@background-theme: #d8dcde;
+@text-color: black;
 .menu {
   display: flex;
   font-family: @font;
   font-size: 1.2em;
   &-text {
     margin: auto;
+    padding-bottom: 0.5em;
     &-link {
       font-style: italic;
       margin: 0.5em;
@@ -15,8 +18,10 @@
   display: flex;
   font-family: @font;
   font-size: 1.2em;
+  background: @background-theme;
+  color: @text-color;
   &-list {
-    margin: 2em;
+    border: 1px solid black;
     flex-grow: 1;
     &-cell {
       padding: 2em;

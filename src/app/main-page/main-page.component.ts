@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { Products } from "../../model/products";
-import { Users } from "../../model/users";
+import { User } from "../../model/user";
 import { GetProductsService } from "../services/get-products/get-products.service";
 import { GetUsersService } from "../services/get-users/get-users.service";
 
@@ -13,7 +13,7 @@ import { GetUsersService } from "../services/get-users/get-users.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainPageComponent implements OnInit, OnDestroy {
-  user: Users = null;
+  user: User;
   userID: string;
   userSubscriber: Subscription;
   productList: Products[] = [];
@@ -25,11 +25,11 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.userID = `${this.activateRoute.snapshot.params.id}`;
-    if (this.userID) {
-      this.userSubscriber = this.usersService.userByID(this.userID).subscribe((data: Users) => {
+    if (this.activateRoute.snapshot.params.id) {
+      this.userID = `${this.activateRoute.snapshot.params.id}`;
+      this.userSubscriber = this.usersService.userByID(this.userID).subscribe((data: User) => {
         if (data) {
-          this.user = new Users(data.userID, data.login, data.password, data.username);
+          this.user = new User(data.userID, data.login, data.password, data.username);
           this.cdr.markForCheck();
         }
       });
@@ -41,7 +41,11 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.userSubscriber.unsubscribe();
-    this.productSubscriber.unsubscribe();
+    if (this.userSubscriber) {
+      this.userSubscriber.unsubscribe();
+    }
+    if (this.productSubscriber) {
+      this.productSubscriber.unsubscribe();
+    }
   }
 }

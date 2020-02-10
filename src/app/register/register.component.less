@@ -1,27 +1,34 @@
 @font: "Book Antiqua", serif;
+@background-theme: #d8dcde;
+@text-color: black;
 .login {
   display: flex;
   flex-direction: column;
   margin-top: 3em;
   font-family: @font;
   font-size: 1.2em;
+  color: @text-color;
   &-form {
     display: flex;
     flex-direction: column;
     margin: auto;
+    background: @background-theme;
     &-main {
       display: flex;
       flex-direction: column;
       border: 1px solid black;
       padding: 0.5em 1em;
+      position: relative;
     }
     &-name {
       display: flex;
+      position: relative;
     }
     &-field {
       display: flex;
       flex-direction: column;
       padding: 0.5em;
+      position: relative;
     }
     &-submit {
       margin: 1em auto;
@@ -35,5 +42,35 @@
     &-link {
       font-style: italic;
     }
+  }
+}
+.hint {
+  position: absolute;
+  right: 100%;
+  width: 70%;
+  margin: 0.5em;
+  border: 1px solid darken(@background-theme, 20%);
+  border-radius: 5px;
+  background: darken(@background-theme, 10%);
+  padding: 0.5em;
+  font-size: 0.8em;
+  display: flex;
+  flex-direction: column;
+}
+.validation-error {
+  position: absolute;
+  font-size: 0.8em;
+  left: 100%;
+  top: 25%;
+  width: 70%;
+  margin-left: 0.5em;
+  border: 1px solid darkred;
+  border-radius: 5px;
+  background: #ffb2a6;
+  display: flex;
+  &-message {
+    margin: 0.5em;
+    display: flex;
+    flex-direction: column;
   }
 }

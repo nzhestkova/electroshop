@@ -1,1 +1,9 @@
-<router-outlet></router-outlet>
+<div class="background" [ngClass]="{'light-theme': !darkTheme, 'dark-theme': darkTheme}">
+  <router-outlet></router-outlet>
+  <button class="theme"
+          [ngClass]="{'light-theme-button': !darkTheme, 'dark-theme-button': darkTheme}"
+          (click)="darkTheme = !darkTheme">
+    <span class="theme-icon" *ngIf="darkTheme">💡</span>
+    <span class="theme-icon" *ngIf="!darkTheme">🌙</span>
+  </button>
+</div>

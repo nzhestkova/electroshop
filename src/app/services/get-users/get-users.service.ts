@@ -1,29 +1,34 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Users } from "../../../model/users";
+import { map } from "rxjs/operators";
+import { environment } from "../../../environments/environment";
+import { User } from "../../../model/user";
 
 @Injectable({
   providedIn: "root"
 })
 export class GetUsersService {
-  url: string = "http://localhost:3000/users";
+  url = environment.serverURL + "users";
   constructor(private _http: HttpClient) {
   }
 
-  importList(login: string, password: string): Observable<Object> {
-    return this._http.get(this.url, { params: {login: login, password: password} });
+  importList(login: string, password: string): Observable<User> {
+    return this._http.get<User>(this.url, { params: {login: login, password: password} });
   }
 
-  registerNewUser(newUser: Users): Observable<Object> {
-    return this._http.post(this.url, newUser);
+  registerNewUser(newUser: User): Observable<User> {
+    return this._http.post<User>(this.url, newUser);
   }
 
-  userByID(id: string): Observable<Object> {
-    return this._http.get(this.url, { params: {id: `${id}`} });
+  userByID(id: string): Observable<User> {
+    return this._http.get<User>(this.url, { params: {id: `${id}`} }).pipe(map((data: User) => {
+      return data;
+      },
+    ));
   }
 
-  updateUserInformation(newUser: Users): Observable<Object> {
-    return this._http.put(this.url, newUser);
+  updateUserInformation(newUser: User): Observable<User> {
+    return this._http.put<User>(this.url, newUser);
   }
 }

@@ -1,3 +1,5 @@
+const rsa = require("js-crypto-rsa");
+
 const express = require("express");
 const app = express();
 const port = 3000;
@@ -14,7 +16,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-fs.readFile("users.json", "utf8", function (error, data) {
+fs.readFile("./src/server/users.json", "utf8", function (error, data) {
   if (error) throw error; // если возникла ошибка
   data = JSON.parse(data);
   for (let record of data) {
@@ -22,7 +24,7 @@ fs.readFile("users.json", "utf8", function (error, data) {
   }
 });
 
-fs.readFile("products.json", "utf8", function (error, data) {
+fs.readFile("./src/server/products.json", "utf8", function (error, data) {
   if (error) throw error; // если возникла ошибка
   data = JSON.parse(data);
   for (let record of data) {
@@ -43,8 +45,7 @@ app.get("/users", function (request, response) {
   } else if (request.query.id) {
     const searchID = +request.query.id;
     const user = userList.list.find(item => item.userID === searchID);
-    console.log(user);
-    response.send(user);
+    user ? response.send(user) : response.send({ message: "User not found" });
   } else {
     response.send(userList.list);
   }

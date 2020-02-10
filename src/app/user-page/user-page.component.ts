@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, OnDestr
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
-import { Users } from "../../model/users";
+import { User } from "../../model/user";
 import { GetUsersService } from "../services/get-users/get-users.service";
 
 @Component({
@@ -13,7 +13,7 @@ import { GetUsersService } from "../services/get-users/get-users.service";
 })
 export class UserPageComponent implements DoCheck, OnDestroy {
   editMode: boolean = false;
-  user: Users = null;
+  user: User = null;
   userID: string;
   userSubscriber: Subscription;
   passwordChangeForm = new FormGroup({
@@ -44,8 +44,8 @@ export class UserPageComponent implements DoCheck, OnDestroy {
 
   ngDoCheck(): void {
     if (this.userID) {
-      this.userSubscriber = this.usersService.userByID(this.userID).subscribe((data: Users ) => {
-        data ? this.user = new Users(data.userID, data.login, data.password, data.username) : this.router.navigate(["/"]);
+      this.userSubscriber = this.usersService.userByID(this.userID).subscribe((data: User ) => {
+        data ? this.user = new User(data.userID, data.login, data.password, data.username) : this.router.navigate(["/"]);
         this.cdr.markForCheck();
       });
     }
