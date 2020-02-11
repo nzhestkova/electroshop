@@ -21,6 +21,11 @@ export class GetUsersService {
     return this._http.post<User>(this.url, newUser);
   }
 
+  checkLogin(login: string): Observable<User> {
+    console.log(login);
+    return this._http.get<User>(this.url, { params: {login: `${login}`} });
+  }
+
   userByID(id: string): Observable<User> {
     return this._http.get<User>(this.url, { params: {id: `${id}`} }).pipe(map((data: User) => {
       return data;

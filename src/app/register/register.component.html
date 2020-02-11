@@ -1,70 +1,9 @@
-<div class="login">
-  <div class="login-form">
-    <form novalidate [formGroup]="registerForm" (ngSubmit)="register()" class="login-form-main">
-      <label class="hint">
-        <span class="hint-message">Заполните поля формы и нажмите кнопку <i><b>Зарегистрироваться</b></i></span>
-        <span>Следуйте правилам:</span>
-        <span>- укажите настоящее <i><b>имя</b></i> и <i><b>фамилию</b></i></span>
-        <span>Не используйте при этом знаки препинания и пробелы</span>
-        <span>- придумайте <i><b>логин</b></i> для входа на сайт</span>
-        <span>Логин состоит из латинских букв, цифр и символов подчеркивания</span>
-        <span>- придумайте <i><b>пароль</b></i></span>
-        <span>Он должен состоять минимум из 8 любых символов</span>
-      </label>
-      <label class="validation-error" *ngIf="(registerForm.dirty && registerForm.invalid)">
-        <span class="validation-error-message">⚠</span>
-        <label class="validation-error-message">
-          <label class="validation-error-message">
-            <span *ngIf="registerForm.get('userName.name').hasError('required')">- введите <b><i>имя</i></b></span>
-            <span *ngIf="registerForm.get('userName.name').hasError('pattern')">- уберите лишние символы в поле <b><i>имя</i></b></span>
-            <span *ngIf="registerForm.get('userName.surname').hasError('required')">- введите <b><i>фамилию</i></b></span>
-            <span *ngIf="registerForm.get('userName.surname').hasError('pattern')">- уберите лишние символы в поле <b><i>фамилия</i></b></span>
-            <span *ngIf="registerForm.get('login').hasError('required')">- придумайте <b><i>логин</i></b></span>
-            <span *ngIf="registerForm.get('login').hasError('pattern')">- уберите лишние символы в поле <b><i>логин</i></b></span>
-            <span *ngIf="registerForm.get('password').hasError('required')">- придумайте <b><i>пароль</i></b></span>
-            <span *ngIf="registerForm.get('passwordConfirm').hasError('required')">- <b><i>повторите пароль</i></b></span>
-          </label>
-        </label>
-      </label>
-      <div class="login-form-name" formGroupName="userName">
-        <label class="login-form-field">
-          <span>Ваше имя:</span>
-          <input formControlName="name">
-        </label>
-        <label class="login-form-field">
-          <span>Ваша фамилия:</span>
-          <input formControlName="surname">
-        </label>
-      </div>
-      <label class="login-form-field">
-        <span>Придумайте логин:</span>
-        <label>
-          <input formControlName="login" class="login-form-field-input">
-          <span class="valid-control"></span>
-        </label>
-      </label>
-      <label class="login-form-field">
-        <span>Придумайте пароль:</span>
-        <label class="login-form-field-password">
-          <label>
-            <input type="password" formControlName="password">
-            <input type="checkbox" appShowPassword>
-          </label>
-        </label>
-      </label>
-      <label class="login-form-field">
-        <span>Повторите пароль:</span>
-        <label class="login-form-field-password">
-          <label>
-            <input type="password" formControlName="passwordConfirm">
-            <input type="checkbox" appShowPassword><span></span>
-          </label>
-        </label>
-      </label>
-      <button type="submit" class="login-form-submit">Зарегистрироваться!</button>
-    </form>
+<div class="register">
+  <span class="register-text">Регистрация</span>
+  <div class="register-form-container">
+    <router-outlet></router-outlet>
   </div>
-  <div class="login-home">
-    <a routerLink="" class="login-home-link">На главную</a>
+  <div class="home-link">
+    <a routerLink="">Вернуться в магазин</a>
   </div>
 </div>

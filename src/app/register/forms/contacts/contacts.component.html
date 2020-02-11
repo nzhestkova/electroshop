@@ -1,0 +1,17 @@
+<form novalidate [formGroup]="contactsForm" class="form">
+  <label class="form-group">
+    <label class="form-field">
+      <span>Номер телефона:</span>
+      <input formControlName="phoneNumber" class="form-field-input">
+    </label>
+    <button class="form-button">+</button>
+  </label>
+  <label class="form-group">
+    <label class="form-field">
+      <span>Электронная почта:</span>
+      <input formControlName="email" class="form-field-input">
+    </label>
+    <button class="form-button">+</button>
+  </label>
+  <button class="form-button-submit form-button" routerLink="/register/addresses">Дальше →</button>
+</form>

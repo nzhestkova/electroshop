@@ -8,6 +8,10 @@ import { AppComponent } from "./app.component";
 import { LoginPageComponent } from "./login-page/login-page.component";
 import { MainPageComponent } from "./main-page/main-page.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { AddressesComponent } from "./register/forms/addresses/addresses.component";
+import { CheckInformationComponent } from "./register/forms/check-information/check-information.component";
+import { ContactsComponent } from "./register/forms/contacts/contacts.component";
+import { PersonalInformationComponent } from "./register/forms/personal-information/personal-information.component";
 import { RegisterComponent } from "./register/register.component";
 import { GetUsersService } from "./services/get-users/get-users.service";
 import { ShopcartPageComponent } from "./shopcart-page/shopcart-page.component";
@@ -26,6 +30,10 @@ import { UserPageComponent } from "./user-page/user-page.component";
     UserPageComponent,
     EditPersonalDataComponent,
     ShowPasswordDirective,
+    PersonalInformationComponent,
+    ContactsComponent,
+    AddressesComponent,
+    CheckInformationComponent,
   ],
   imports: [
     BrowserModule,

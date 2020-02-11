@@ -1,49 +1,35 @@
 @font: "Book Antiqua", serif;
 @background-theme: #d8dcde;
 @text-color: black;
-.login {
+@text-size: 1.2em;
+@space: 0.5em;
+@border-radius: 10px;
+.register{
+  font-family: @font;
+  font-size: @text-size;
+  color: @text-color;
   display: flex;
   flex-direction: column;
-  margin-top: 3em;
-  font-family: @font;
-  font-size: 1.2em;
-  color: @text-color;
-  &-form {
+  &-text {
+    padding: @space;
+    text-align: center;
+    font-size: @text-size;
+  }
+  &-form-container {
     display: flex;
     flex-direction: column;
     margin: auto;
     background: @background-theme;
-    &-main {
-      display: flex;
-      flex-direction: column;
-      border: 1px solid black;
-      padding: 0.5em 1em;
-      position: relative;
-    }
-    &-name {
-      display: flex;
-      position: relative;
-    }
-    &-field {
-      display: flex;
-      flex-direction: column;
-      padding: 0.5em;
-      position: relative;
-    }
-    &-submit {
-      margin: 1em auto;
-      padding: 0.5em 1em;
-      font-family: @font;
-      font-size: 1em;
-    }
-  }
-  &-home {
-    margin: 1em auto;
-    &-link {
-      font-style: italic;
-    }
+    padding: @space;
+    border: 1px solid darken(@background-theme, 50%);
   }
 }
+.home-link {
+  margin: @space auto;
+  font-style: italic;
+  font-weight: bold;
+}
+//
 .hint {
   position: absolute;
   right: 100%;
@@ -57,6 +43,8 @@
   display: flex;
   flex-direction: column;
 }
+
+//
 .validation-error {
   position: absolute;
   font-size: 0.8em;

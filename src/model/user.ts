@@ -3,13 +3,9 @@ export class User {
   login: string;
   password: string;
   username: string;
-  contacts: {
-    phoneNumber: string;
-    email: string;
-    primaryAddress: Address;
-    otherDeliveryAddresses: Address[];
-  };
-  constructor(userID: number, login: string, password: string, username: string) {
+  contacts: Contacts;
+  constructor(userID: number, login: string,
+              password: string, username: string) {
     this.userID = userID;
     this.login = login;
     this.password = password;
@@ -33,5 +29,23 @@ class Address {
     this.street = street;
     this.houseNumber = houseNumber;
     this.flatNumber = flatNumber;
+  }
+}
+
+class Contacts {
+  primaryPhoneNumber: string;
+  otherPhoneNumbers: string[];
+  primaryEmail: string;
+  otherEmails: string[];
+  primaryAddress: Address;
+  otherAddresses: Address[];
+  constructor(primaryPhoneNumber: string, primaryEmail: string, primaryAddress: Address,
+              otherPhoneNumbers: string[], otherEmails: string[], otherAddresses: Address[]) {
+    this.primaryPhoneNumber = primaryPhoneNumber;
+    this.primaryEmail = primaryEmail;
+    this.primaryAddress = primaryAddress;
+    this.otherPhoneNumbers = otherPhoneNumbers;
+    this.otherEmails = otherEmails;
+    this.otherAddresses = otherAddresses;
   }
 }
