@@ -13,7 +13,7 @@ import { GetUsersService } from "../services/get-users/get-users.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainPageComponent implements OnInit, OnDestroy {
-  user: User;
+  username: string;
   userID: string;
   userSubscriber: Subscription;
   productList: Products[] = [];
@@ -25,15 +25,17 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log(this.activateRoute.snapshot);
     if (this.activateRoute.snapshot.params.id) {
       this.userID = `${this.activateRoute.snapshot.params.id}`;
       this.userSubscriber = this.usersService.userByID(this.userID).subscribe((data: User) => {
         if (data) {
-          this.user = new User(data.userID, data.login, data.password, data.username);
+          this.username = data.username;
           this.cdr.markForCheck();
         }
       });
     }
+
     this.productSubscriber = this.productsService.wholeList().subscribe((data: Products[]) => {
       this.productList = data;
       this.cdr.markForCheck();
@@ -44,6 +46,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     if (this.userSubscriber) {
       this.userSubscriber.unsubscribe();
     }
+
     if (this.productSubscriber) {
       this.productSubscriber.unsubscribe();
     }

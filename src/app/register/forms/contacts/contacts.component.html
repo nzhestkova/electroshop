@@ -1,4 +1,7 @@
-<form novalidate [formGroup]="contactsForm" class="form">
+<div class="form-name">
+  <span class="form-name-text">Контактная информация</span>
+</div>
+<form novalidate [formGroup]="contactsForm" (submit)="nextStep()" class="form">
   <label class="form-group">
     <label class="form-field">
       <span>Номер телефона:</span>
@@ -13,5 +16,8 @@
     </label>
     <button class="form-button">+</button>
   </label>
-  <button class="form-button-submit form-button" routerLink="/register/addresses">Дальше →</button>
+  <label class="form-group">
+    <button class="form-button" routerLink="/register/personal">← Назад</button>
+    <button class="form-button-submit form-button">Дальше →</button>
+  </label>
 </form>

@@ -1,0 +1,18 @@
+<form [formGroup]="loginForm" class="form-field">
+  <span>Придумайте логин:</span>
+  <label class="form-group">
+    <input formControlName="login" class="form-field-input" (input)="timeoutCheck()">
+    <label class="message" *ngIf="loginForm.valid">
+      <span *ngIf="timerID" class="message-undefined">⚠ проверяем</span>
+      <label class="message" *ngIf="checkResult">
+        <span *ngIf="!checkResult.userExist" class="message-unique">✓ логин свободен</span>
+        <span *ngIf="checkResult.userExist" class="message-non-unique">✕ логин занят</span>
+      </label>
+    </label>
+    <label class="message" *ngIf="loginForm.invalid">
+      <span *ngIf="loginForm.get('login').hasError('required')" class="message-undefined">⚠ заполните поле</span>
+      <span *ngIf="loginForm.get('login').hasError('pattern')" class="message-undefined">⚠ некорректный логин</span>
+      <span *ngIf="loginForm.get('login').hasError('minlength')" class="message-undefined">⚠ слишком короткий логин</span>
+    </label>
+  </label>
+</form>

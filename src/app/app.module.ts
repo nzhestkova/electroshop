@@ -11,13 +11,13 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { AddressesComponent } from "./register/forms/addresses/addresses.component";
 import { CheckInformationComponent } from "./register/forms/check-information/check-information.component";
 import { ContactsComponent } from "./register/forms/contacts/contacts.component";
-import { PersonalInformationComponent } from "./register/forms/personal-information/personal-information.component";
 import { RegisterComponent } from "./register/register.component";
 import { GetUsersService } from "./services/get-users/get-users.service";
 import { ShopcartPageComponent } from "./shopcart-page/shopcart-page.component";
 import { ShowPasswordDirective } from "./show-password/show-password.directive";
 import { EditPersonalDataComponent } from "./user-page/edit-personal-data/edit-personal-data.component";
 import { UserPageComponent } from "./user-page/user-page.component";
+import { LoginComponent } from "./register/forms/login/login.component";
 
 @NgModule({
   declarations: [
@@ -30,10 +30,10 @@ import { UserPageComponent } from "./user-page/user-page.component";
     UserPageComponent,
     EditPersonalDataComponent,
     ShowPasswordDirective,
-    PersonalInformationComponent,
     ContactsComponent,
     AddressesComponent,
     CheckInformationComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,15 @@ app.options("*", cors());
 const bodyParser = require("body-parser");
 
 const fs = require("fs");
+
+const dataList = {
+  users: {
+    count: 178356794,
+    list: []
+  },
+  products: []
+};
+
 const userList = { list: [] };
 const productList = { list: [] };
 
@@ -38,17 +47,22 @@ app.get("/", function (request, response) {
 });
 
 app.get("/users", function (request, response) {
-  if (request.query.login && request.query.password) {
-    const user = userList.list.find(item =>
-      item.login === request.query.login && item.password === request.query.password);
-    response.send(user);
+  if (request.query.login) {
+    const login = request.query.login;
+    const currentUser = userList.list.find(item => item.login === login);
+    if (currentUser) {
+      if (request.query.password) {
+        const password = request.query.password;
+        if (password === currentUser.password) {
+          response.send( { userExist: true, userPassControlID: currentUser.userID } );
+        } else { response.send( {userExist: true, userPassControlID: false} ) }
+      } else { response.send( { userExist: true } ) }
+    } else { response.send( {userExist: false} ) }
   } else if (request.query.id) {
     const searchID = +request.query.id;
     const user = userList.list.find(item => item.userID === searchID);
     user ? response.send(user) : response.send({ message: "User not found" });
-  } else {
-    response.send(userList.list);
-  }
+  } else { response.send(userList.list) }
   response.end();
 });
 
@@ -57,10 +71,13 @@ app.get("/products", function (request, response) {
   response.end();
 });
 
+// для регистрации пользователей
 app.post("/users", function (request, response) {
   const newUser = request.body;
+  dataList.users.count += 1;
+  newUser.userID = dataList.users.count;
   userList.list.push(newUser);
-  response.send({message: `${newUser.username} added to list`, userID: newUser.userID });
+  response.send(newUser);
   response.end();
 });
 

@@ -1,12 +1,12 @@
 <div class="menu">
   <div class="menu-text">
-    <span *ngIf="!user">Привет! </span>
-    <span *ngIf="user">Привет, {{user.username}}! </span>
+    <span *ngIf="!username">Привет! </span>
+    <span *ngIf="username">Привет, {{username}}! </span>
     <span>Добро пожаловать в магазин.</span>
-    <a *ngIf="!user" routerLink="login" class="menu-text-link">Login</a>
-    <a *ngIf="!user" routerLink="register/personal" class="menu-text-link">Register</a>
-    <a *ngIf="user" routerLink="logout" class="menu-text-link">Logout</a>
-    <a *ngIf="user" routerLink="profile" class="menu-text-link">Profile</a>
+    <a *ngIf="!username" routerLink="login" class="menu-text-link">Login</a>
+    <a *ngIf="!username" routerLink="register" class="menu-text-link">Register</a>
+    <a *ngIf="username" routerLink="logout" class="menu-text-link">Logout</a>
+    <a *ngIf="username" routerLink="profile" class="menu-text-link">Profile</a>
   </div>
 </div>
 <div class="products">

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-addresses",
@@ -6,7 +7,11 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./addresses.component.less"]
 })
 export class AddressesComponent implements OnInit {
-
+  addressesForm = new FormGroup({
+    country: new FormControl("--Выберите--", [
+      Validators.required,
+    ])
+  });
   ngOnInit(): void {
   }
 

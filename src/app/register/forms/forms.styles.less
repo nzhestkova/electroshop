@@ -2,6 +2,7 @@
 .form {
   display: flex;
   flex-direction: column;
+  margin: @space;
   &-group {
     display: flex;
   }
@@ -11,14 +12,15 @@
     margin: @space;
     &-input {
       outline: none;
+      font-size: 0.9em;
+      margin-bottom: auto;
     }
   }
   &-button {
     font-size: 0.9em;
     outline: none;
-    margin: auto;
+    margin: @space auto;
     &-submit{
-      margin: @space auto;
       padding: @space;
     }
   }

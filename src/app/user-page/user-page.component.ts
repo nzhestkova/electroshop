@@ -45,7 +45,7 @@ export class UserPageComponent implements DoCheck, OnDestroy {
   ngDoCheck(): void {
     if (this.userID) {
       this.userSubscriber = this.usersService.userByID(this.userID).subscribe((data: User ) => {
-        data ? this.user = new User(data.userID, data.login, data.password, data.username) : this.router.navigate(["/"]);
+        data ? this.user = new User(data.login, data.password, data.username) : this.router.navigate(["/"]);
         this.cdr.markForCheck();
       });
     }

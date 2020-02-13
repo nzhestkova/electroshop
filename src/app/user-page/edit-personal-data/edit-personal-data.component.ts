@@ -31,7 +31,6 @@ export class EditPersonalDataComponent implements OnInit {
   updateUserName(): void {
     if (this.userNameForm.valid) {
       const newUser = new User(
-        this.userInformation.userID,
         this.userInformation.login,
         this.userInformation.password,
         `${this.userNameForm.get("name").value} ${this.userNameForm.get("surname").value}`);

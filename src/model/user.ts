@@ -4,9 +4,7 @@ export class User {
   password: string;
   username: string;
   contacts: Contacts;
-  constructor(userID: number, login: string,
-              password: string, username: string) {
-    this.userID = userID;
+  constructor(login: string, password: string, username: string) {
     this.login = login;
     this.password = password;
     this.username = username;

@@ -1,0 +1,20 @@
+@import "../forms.styles.less";
+.message {
+  flex-grow: 1;
+  font-size: 0.9em;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  &-unique {
+    margin-left: 1em;
+    color: green;
+  }
+  &-non-unique {
+    margin-left: 1em;
+    color: #a00000;
+  }
+  &-undefined {
+    margin-left: @space;
+    color: #363636;
+  }
+}

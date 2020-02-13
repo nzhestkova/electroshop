@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { User } from "../../../../model/user";
 
 @Component({
   selector: "app-contacts",
@@ -7,6 +9,9 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
   styleUrls: ["./contacts.component.less"]
 })
 export class ContactsComponent implements OnInit {
+  userInfo: User;
+  constructor(private router: Router) {
+  }
   contactsForm = new FormGroup({
     phoneNumber: new FormControl("", [
       Validators.required,
@@ -17,6 +22,10 @@ export class ContactsComponent implements OnInit {
       Validators.pattern(/^[A-Za-z._]*[@][a-z]*[.][a-z]*$/),
     ])
   });
+
+  nextStep(): void {
+    this.router.navigate(["", "register", "addresses"]).then();
+  }
 
   ngOnInit(): void {
   }

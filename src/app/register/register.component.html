@@ -1,9 +1,51 @@
-<div class="register">
-  <span class="register-text">Регистрация</span>
-  <div class="register-form-container">
-    <router-outlet></router-outlet>
+<div class="main-container">
+  <div class="register">
+    <span class="register-text">Регистрация</span>
+    <div class="register-form-container">
+      <form novalidate [formGroup]="registerForm" (ngSubmit)="register()" class="form">
+        <div formGroupName="userName" class="form-group">
+          <label class="form-field">
+            <span>Ваше имя:</span>
+            <input formControlName="name" class="form-field-input">
+          </label>
+          <label class="form-field">
+            <span>Ваша фамилия:</span>
+            <input formControlName="surname" class="form-field-input">
+          </label>
+        </div>
+        <app-login (usersNewLogin)="registerForm.get('login').setValue($event)"></app-login>
+        <label class="form-field">
+          <span>Придумайте пароль:</span>
+          <label class="form-field-password">
+            <input type="password" formControlName="password" class="form-field-input">
+            <input type="checkbox" appShowPassword>
+          </label>
+        </label>
+        <label class="form-field">
+          <span>Повторите пароль:</span>
+          <label class="form-field-password">
+            <input type="password" formControlName="password" class="form-field-input">
+            <input type="checkbox" appShowPassword>
+          </label>
+        </label>
+        <button type="submit" class="form-button form-button-submit">Зарегистрироваться!</button>
+      </form>
+    </div>
+    <div class="home-link">
+      <a routerLink="">Вернуться в магазин</a>
+    </div>
   </div>
-  <div class="home-link">
-    <a routerLink="">Вернуться в магазин</a>
+  <div [ngClass]="{'validation-correct': registerForm.valid, 'validation-error': registerForm.invalid}">
+    <span *ngIf="registerForm.valid" class="validation-error-message">
+      Форма готова к отправке
+    </span>
+    <span *ngIf="registerForm.get('login').invalid" class="validation-error-message">
+      <b><i>Логин</i></b> должен быть не короче <b>6 символов</b>
+    и должен содержать только <b>буквы латинского алфавита,
+    цифры и символы нижнего подчеркивания</b>.
+    </span>
+    <span *ngIf="registerForm.get('login').invalid" class="validation-error-message">
+      Если <b><i>логин занят</i></b> - попробуйте другой.
+    </span>
   </div>
 </div>
