@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ServerResponseUser } from "../../../../model/server-response-user";
+import { ServerResponseUser } from "../../../../models/server-response-user";
 import { GetUsersService } from "../../../services/get-users/get-users.service";
 
 @Component({

@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
-import { Products } from "../../model/products";
-import { User } from "../../model/user";
-import { GetProductsService } from "../services/get-products/get-products.service";
+import { Product } from "../../models/product";
+import { User } from "../../models/user";
+import { ProductsService } from "../services/products/products.service";
 import { GetUsersService } from "../services/get-users/get-users.service";
 
 @Component({
@@ -16,11 +16,11 @@ export class MainPageComponent implements OnInit, OnDestroy {
   username: string;
   userID: string;
   userSubscriber: Subscription;
-  productList: Products[] = [];
+  productList: Product[] = [];
   productSubscriber: Subscription;
   constructor(private activateRoute: ActivatedRoute,
               private usersService: GetUsersService,
-              private productsService: GetProductsService,
+              private productsService: ProductsService,
               private cdr: ChangeDetectorRef) {
   }
 
@@ -36,7 +36,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
       });
     }
 
-    this.productSubscriber = this.productsService.wholeList().subscribe((data: Products[]) => {
+    this.productSubscriber = this.productsService.wholeList().subscribe((data: Product[]) => {
       this.productList = data;
       this.cdr.markForCheck();
     });

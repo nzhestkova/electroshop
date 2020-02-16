@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, OnDestr
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
-import { User } from "../../model/user";
+import { User } from "../../models/user";
 import { GetUsersService } from "../services/get-users/get-users.service";
 
 @Component({

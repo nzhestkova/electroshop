@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
-import { User } from "../../../model/user";
+import { User } from "../../../models/user";
 import { GetUsersService } from "../../services/get-users/get-users.service";
 
 @Component({
