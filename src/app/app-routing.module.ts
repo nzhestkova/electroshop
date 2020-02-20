@@ -1,23 +1,18 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { LoginPageComponent } from "./login-page/login-page.component";
-import { MainPageComponent } from "./main-page/main-page.component";
-import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
-import { RegisterComponent } from "./register/register.component";
-import { ShopcartPageComponent } from "./shopcart-page/shopcart-page.component";
-import { UserPageComponent } from "./user-page/user-page.component";
-
+import { LoginComponent } from "./components/login-page/login.component";
+import { MainPageComponent } from "./components/main-page/main-page.component";
+import { NewRegisterComponent } from "./components/new-register/new-register.component";
+import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
+import { ShopcartPageComponent } from "./components/shopcart-page/shopcart-page.component";
+import { UserPageComponent } from "./components/user-page/user-page.component";
 
 const routes: Routes = [
   { path: "", component: MainPageComponent },
-  { path: "login", component: LoginPageComponent },
-  { path: "register", component: RegisterComponent },
+  { path: "login", component: LoginComponent },
+  { path: "register", component: NewRegisterComponent },
+  { path: "profile", component: UserPageComponent },
   { path: "shopcart", component: ShopcartPageComponent },
-  { path: ":id", component: MainPageComponent},
-  { path: ":id/logout", redirectTo: "/" },
-  { path: ":id/shopcart", component: ShopcartPageComponent },
-  { path: ":id/profile", component: UserPageComponent },
-  { path: ":id/profile/logout", redirectTo: "/" },
   { path: "**", component: PageNotFoundComponent},
 ];
 

@@ -46,6 +46,28 @@ app.get("/", function (request, response) {
   response.end();
 });
 
+app.get("/user", function (request, response) {
+  if (request.query.login) {
+    const login = request.query.login;
+    const currentUser = userList.list.find(item => item.login === login);
+    if (currentUser) {
+      if (request.query.password) {
+        const password = request.query.password;
+        password === currentUser.password
+          ? response.send( { error: {}, data: currentUser } )
+          : response.send( { error: { userPass: false } } );
+      } else {
+        response.send( { error: { userExist: true } } );
+      }
+    } else {
+      response.send({ error: { userExist: false } });
+    }
+  } else {
+    response.send(userList.list);
+  }
+  response.end();
+});
+
 app.get("/users", function (request, response) {
   if (request.query.login) {
     const login = request.query.login;
@@ -72,7 +94,7 @@ app.get("/products", function (request, response) {
 });
 
 // для регистрации пользователей
-app.post("/users", function (request, response) {
+app.post("/user", function (request, response) {
   const newUser = request.body;
   dataList.users.count += 1;
   newUser.userID = dataList.users.count;

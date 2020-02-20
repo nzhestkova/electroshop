@@ -1,0 +1,59 @@
+@import "../forms.styles.less";
+
+.main {
+  padding: 5 * @space;
+}
+
+.form-container {
+  display: flex;
+  color: black;
+}
+
+.form {
+  padding: @space;
+  background: #cecece;
+  border: 1px solid darken(#cecece, 30%);
+  margin: auto;
+}
+
+.form-field-password {
+  display: flex;
+}
+
+.message {
+  color: black;
+  padding: @space;
+  flex-grow: 1;
+  display: flex;
+  position: relative;
+  &-warning {
+    background: #d5d961;
+    border: 1px solid darken(#d5d961, 30%);
+    padding: @space;
+    margin: auto;
+    width: 50%;
+  }
+  &-error {
+    background: #f6ddd5;
+    border: 1px solid darken(#e5746d, 30%);
+    padding: @space;
+    margin: @space auto auto auto;
+    display: flex;
+  }
+  &-text {
+    display: flex;
+    flex-direction: column;
+    &-element {
+      padding: @space * 0.2 ;
+    }
+    &-sign {
+      font-size: 2em;
+      color: darken(#e5746d, 50%);
+      padding: 0 @space 0 0.5 * @space;
+    }
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}

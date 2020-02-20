@@ -1,0 +1,48 @@
+@import "../forms.styles.less";
+
+.form-container {
+  display: flex;
+  margin-top: @space;
+}
+
+.form {
+  padding: @space;
+  background: #cecece;
+  border: 1px solid darken(#cecece, 30%);
+  margin: auto @space auto auto;
+}
+
+.message {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  &-unique {
+    margin-left: 1em;
+    color: green;
+  }
+  &-non-unique {
+    margin-left: 1em;
+    color: #a00000;
+  }
+  &-undefined {
+    margin-left: @space;
+    color: #363636;
+  }
+}
+
+.hint {
+  margin: auto auto auto @space;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  padding: @space;
+  background: #e8e4ae;
+  border: 1px solid darken(#d5d961, 30%);
+  &-text {
+    display: flex;
+    &-item {
+      padding: 0.2em;
+    }
+  }
+}

@@ -2,12 +2,18 @@
   "userID":1751236,
   "login":"tulich",
   "password":"qwertyfly1213",
-  "username":"Grey William"
+  "username": {
+    "name": "William",
+    "surname": "Grey"
+  }
 },
   {
     "userID":1751276,
     "login":"admin",
     "password":"sys1298",
-    "username":"Austin Vanderboom"
+    "username": {
+      "name": "Austin",
+      "surname": "Vanderboom"
+    }
   }
 ]

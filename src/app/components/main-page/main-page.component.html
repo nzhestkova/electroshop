@@ -1,0 +1,23 @@
+<div class="menu">
+  <div class="menu-text">
+    <span *ngIf="!user.userID">Привет! </span>
+    <span *ngIf="user.userID">Привет, {{user.username.name}} {{user.username.surname}}! </span>
+    <span>Добро пожаловать в магазин.</span>
+    <a *ngIf="!user.userID" routerLink="login" class="menu-text-link">Login</a>
+    <a *ngIf="!user.userID" routerLink="register" class="menu-text-link">Register</a>
+    <a *ngIf="user.userID" (click)="logout()" class="menu-text-link">Logout</a>
+    <a *ngIf="user.userID" routerLink="profile" class="menu-text-link">Profile</a>
+  </div>
+</div>
+<div class="products">
+  <table class="products-list">
+    <thead>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of productList">
+      <td class="products-list-cell">{{product.title}}</td>
+      <td class="products-list-cell">{{product.price | currency}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

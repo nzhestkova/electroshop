@@ -1,0 +1,35 @@
+@font: "Book Antiqua", serif;
+@background-theme: #d8dcde;
+@text-color: black;
+.menu {
+  display: flex;
+  font-family: @font;
+  font-size: 1.2em;
+  &-text {
+    margin: auto;
+    padding-bottom: 0.5em;
+    &-link {
+      font-style: italic;
+      margin: 0.5em;
+      text-decoration: underline;
+      color: blue;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+.products {
+  display: flex;
+  font-family: @font;
+  font-size: 1.2em;
+  background: @background-theme;
+  color: @text-color;
+  &-list {
+    border: 1px solid black;
+    flex-grow: 1;
+    &-cell {
+      padding: 2em;
+    }
+  }
+}

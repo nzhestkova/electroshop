@@ -1,0 +1,40 @@
+<div class="message">
+  <div *ngIf="this.loginForm.get('submit').untouched" class="message-error">
+    <div class="message-text">
+      <span class="message-text-element"><b>Вход</b></span>
+      <span class="message-text-element">Введите <b><i>логин</i></b> и <b><i>пароль</i></b>, чтобы войти</span>
+    </div>
+  </div>
+  <div *ngIf="authorizationErrors.userNotPass" class="message-error">
+    <span class="message-text-sign">⚠</span>
+    <div class="message-text">
+      <span class="message-text-element"><b>Не удалось войти</b></span>
+      <span class="message-text-element">Неправильно указан логин или пароль</span>
+    </div>
+  </div>
+  <div *ngIf="authorizationErrors.userNotFound" class="message-error">
+    <span class="message-text-sign">⚠</span>
+    <div class="message-text">
+      <span class="message-text-element"><b>Не удалось войти</b></span>
+      <span class="message-text-element">Пользователя с таким логином не существует</span>
+    </div>
+  </div>
+</div>
+<div class="form-container">
+  <form novalidate [formGroup]="loginForm" class="form"
+        (input)="inputInfo()"
+        (ngSubmit)="loginUser()">
+    <label class="form-field">
+      <span>Login:</span>
+      <input formControlName="login" class="form-field-input">
+    </label>
+    <label class="form-field">
+      <span>Password:</span>
+      <label class="form-field-password">
+        <input type="password" formControlName="password" class="form-field-input">
+        <input type="checkbox" appShowPassword>
+      </label>
+    </label>
+    <input type="submit" formControlName="submit" class="form-button form-button-submit">
+  </form>
+</div>
