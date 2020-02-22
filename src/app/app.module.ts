@@ -10,7 +10,7 @@ import { LoginComponent } from "./components/login-page/login.component";
 import { MainPageComponent } from "./components/main-page/main-page.component";
 import { NewRegisterComponent } from "./components/new-register/new-register.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
-import { ShopcartPageComponent } from "./components/shopcart-page/shopcart-page.component";
+import { BasketComponent } from "./components/shopcart-page/basket.component";
 import { EditPersonalDataComponent } from "./components/user-page/edit-personal-data/edit-personal-data.component";
 import { UserPageComponent } from "./components/user-page/user-page.component";
 import { ShowPasswordDirective } from "./directives/show-password/show-password.directive";
@@ -21,7 +21,7 @@ import { appReducers } from "./store/reducers/app.reducers";
   declarations: [
     AppComponent,
     MainPageComponent,
-    ShopcartPageComponent,
+    BasketComponent,
     PageNotFoundComponent,
     UserPageComponent,
     EditPersonalDataComponent,
@@ -37,7 +37,9 @@ import { appReducers } from "./store/reducers/app.reducers";
     StoreModule.forRoot(appReducers, {
       runtimeChecks: {
         strictStateImmutability: true,
-        strictActionImmutability: true
+        strictActionImmutability: true,
+        strictActionSerializability: true,
+        strictStateSerializability: true,
       }
     }),
   ],

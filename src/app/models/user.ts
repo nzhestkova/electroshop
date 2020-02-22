@@ -1,3 +1,5 @@
+import { Product } from "./product";
+
 export class User {
   userID: number;
   login: string;
@@ -7,6 +9,10 @@ export class User {
     surname: string,
   };
   contacts: Contacts;
+  purchases: {
+    product: Product,
+    count: number,
+  }[];
   constructor(login: string, password: string, username: { name: string, surname: string }) {
     this.login = login;
     this.password = password;

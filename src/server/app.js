@@ -46,6 +46,7 @@ app.get("/", function (request, response) {
   response.end();
 });
 
+// запрос пользователей
 app.get("/user", function (request, response) {
   if (request.query.login) {
     const login = request.query.login;
@@ -68,23 +69,13 @@ app.get("/user", function (request, response) {
   response.end();
 });
 
-app.get("/users", function (request, response) {
-  if (request.query.login) {
-    const login = request.query.login;
-    const currentUser = userList.list.find(item => item.login === login);
-    if (currentUser) {
-      if (request.query.password) {
-        const password = request.query.password;
-        if (password === currentUser.password) {
-          response.send( { userExist: true, userPassControlID: currentUser.userID } );
-        } else { response.send( {userExist: true, userPassControlID: false} ) }
-      } else { response.send( { userExist: true } ) }
-    } else { response.send( {userExist: false} ) }
-  } else if (request.query.id) {
-    const searchID = +request.query.id;
-    const user = userList.list.find(item => item.userID === searchID);
-    user ? response.send(user) : response.send({ message: "User not found" });
-  } else { response.send(userList.list) }
+app.get("/basket", function (request, response) {
+  const userID = request.userID;
+  if (userID) {
+
+  } else {
+
+  }
   response.end();
 });
 

@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
     const password = this.loginForm.get("password").value;
     this.service.authorization(login, password).subscribe(
       data => {
+        console.log(data);
         if (data.data) {
           this.store$.dispatch(userLogin({userInfo: data.data}));
           this.router.navigate([""]).then();

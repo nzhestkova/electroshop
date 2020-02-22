@@ -7,6 +7,10 @@
     <a *ngIf="!user.userID" routerLink="register" class="menu-text-link">Register</a>
     <a *ngIf="user.userID" (click)="logout()" class="menu-text-link">Logout</a>
     <a *ngIf="user.userID" routerLink="profile" class="menu-text-link">Profile</a>
+    <a routerLink="basket" class="menu-text-link">
+      <span>Basket</span>
+      <span *ngIf="user.purchases && user.purchases.length">({{user.purchases.length}})</span>
+    </a>
   </div>
 </div>
 <div class="products">
