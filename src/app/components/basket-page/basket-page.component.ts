@@ -17,7 +17,7 @@ export class BasketPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const product = new Product(123123, "ghghghg", 12);
+    const product = new Product(123123, "title", 12);
     this.store$.dispatch(addProduct(product));
     this.store$.select(selectProduct).subscribe(data => this.products = data);
   }
