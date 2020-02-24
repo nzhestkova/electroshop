@@ -1,15 +1,12 @@
 import { createAction, props } from "@ngrx/store";
-import { Purchase } from "../../models/purchase";
+import { Product } from "../../models/product";
 
-const ADD_PURCHASE = "[Basket] add product";
-const REMOVE_PURCHASE = "[Basket] remove product";
+const ADD_PRODUCT = "[Basket] product added";
+const REMOVE_PRODUCT = "[Basket] product removed";
 
-export const addPurchase = createAction(
-  ADD_PURCHASE,
-  props<{ purchase: Purchase }>(),
+export const addProduct = createAction(
+  ADD_PRODUCT,
+  props<Product>(),
 );
 
-export const removePurchase = createAction(
-  REMOVE_PURCHASE,
-  props<{ purchase: Purchase }>(),
-);
+export const removeProduct = createAction(REMOVE_PRODUCT);

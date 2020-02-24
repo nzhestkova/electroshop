@@ -10,24 +10,24 @@ import { LoginComponent } from "./components/login-page/login.component";
 import { MainPageComponent } from "./components/main-page/main-page.component";
 import { NewRegisterComponent } from "./components/new-register/new-register.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
-import { BasketComponent } from "./components/shopcart-page/basket.component";
 import { EditPersonalDataComponent } from "./components/user-page/edit-personal-data/edit-personal-data.component";
 import { UserPageComponent } from "./components/user-page/user-page.component";
 import { ShowPasswordDirective } from "./directives/show-password/show-password.directive";
 import { UserService } from "./services/new-user-service/user.service";
 import { appReducers } from "./store/reducers/app.reducers";
+import { BasketPageComponent } from './components/basket-page/basket-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
-    BasketComponent,
     PageNotFoundComponent,
     UserPageComponent,
     EditPersonalDataComponent,
     ShowPasswordDirective,
     LoginComponent,
     NewRegisterComponent,
+    BasketPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,6 @@ import { createSelector } from "@ngrx/store";
 import { AppState } from "../state/app.state";
 import { BasketState } from "../state/basket.state";
 
-const selectBasket = (appState: AppState) => appState.basket;
+const selectPurchase = (appState: AppState) => appState.purchase;
 
-export const selectPurchases = createSelector(selectBasket, (state: BasketState) => state.purchases);
+export const selectProduct = createSelector(selectPurchase, (state: BasketState) => state.product);
