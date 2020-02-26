@@ -1,0 +1,29 @@
+.popup {
+  margin: 10% auto auto auto;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid darken(#f5f3f1, 10%);
+  border-radius: 5px;
+  background: beige;
+  &-element {
+    padding: 0.5em;
+    margin: auto;
+  }
+  &-confirm {
+    display: flex;
+  }
+  &-button {
+    margin: 0.5em;
+    padding: 0.5em;
+  }
+  &-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    background: rgba(0, 0, 0, 0.6);
+  }
+}

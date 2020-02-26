@@ -1,12 +1,12 @@
 <div class="menu">
   <div class="menu-text">
-    <span *ngIf="!user.userID">Привет! </span>
-    <span *ngIf="user.userID">Привет, {{user.username.name}} {{user.username.surname}}! </span>
+    <span *ngIf="!loggedIn">Привет! </span>
+    <span *ngIf="loggedIn">Привет, {{user.username.name}} {{user.username.surname}}! </span>
     <span>Добро пожаловать в магазин.</span>
-    <a *ngIf="!user.userID" routerLink="login" class="menu-text-link">Login</a>
-    <a *ngIf="!user.userID" routerLink="register" class="menu-text-link">Register</a>
-    <a *ngIf="user.userID" (click)="logout()" class="menu-text-link">Logout</a>
-    <a *ngIf="user.userID" routerLink="profile" class="menu-text-link">Profile</a>
+    <a *ngIf="!loggedIn" routerLink="login" class="menu-text-link">Login</a>
+    <a *ngIf="!loggedIn" routerLink="register" class="menu-text-link">Register</a>
+    <a *ngIf="loggedIn" (click)="logout()" class="menu-text-link">Logout</a>
+    <a *ngIf="loggedIn" routerLink="profile" class="menu-text-link">Profile</a>
     <a routerLink="basket" class="menu-text-link">
       <span>Basket</span>
       <span *ngIf="user.purchases && user.purchases.length">({{user.purchases.length}})</span>
@@ -21,7 +21,12 @@
     <tr *ngFor="let product of productList">
       <td class="products-list-cell">{{product.title}}</td>
       <td class="products-list-cell">{{product.price | currency}}</td>
+      <td><button (click)="askConfirmation(product)">+</button></td>
     </tr>
+    <app-purchase-add-popup *ngIf="askConfirm"
+                            [product]="productAdding"
+                            (choiceMade)="answerAction(productAdding, $event)">
+    </app-purchase-add-popup>
     </tbody>
   </table>
 </div>

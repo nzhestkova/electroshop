@@ -1,0 +1,23 @@
+@space: 1em;
+
+.basket {
+  display: flex;
+  flex-direction: column;
+  padding: @space;
+  font-size: @space + 0.2;
+  &-table {
+    margin: @space;
+    text-align: center;
+  }
+  &-empty {
+    margin: auto;
+  }
+  &-total {
+    margin: @space 20% @space auto;
+    font-size: 1.2em;
+    color: #3e0b00;
+  }
+  &-clear {
+    margin: @space 0 @space auto;
+  }
+}

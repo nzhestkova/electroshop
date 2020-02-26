@@ -5,5 +5,5 @@ import { initialUserState } from "../state/user.state";
 export const userReducer = createReducer(
   initialUserState,
   on(userLogin, (state, action) => ({ ...state, userInfo: action.userInfo })),
-  on(logout, (state) => ({ ...state, userInfo: {} })),
+  on(logout, () => initialUserState),
 );

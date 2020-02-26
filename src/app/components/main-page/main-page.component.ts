@@ -1,12 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
-import { select, Store } from "@ngrx/store";
 import { Subscription } from "rxjs";
-import { Product } from "../../models/product";
-import { User } from "../../models/user";
+import { Product, Purchase } from "../../models/product";
+import { Anonymous, User } from "../../models/user";
+import { UserService } from "../../services/new-user-service/user.service";
 import { ProductsService } from "../../services/products/products.service";
-import { logout } from "../../store/actions/user.actions";
-import { selectUserInfo } from "../../store/selectors/user.selectors";
-import { AppState } from "../../store/state/app.state";
+import { PurchasesService } from "../../services/purchases/purchases.service";
 
 @Component({
   selector: "app-main-page",
@@ -15,19 +13,22 @@ import { AppState } from "../../store/state/app.state";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainPageComponent implements OnInit, OnDestroy {
-  username: string;
-  user: User | {};
-  userID: string;
+  user: User | Anonymous;
+  loggedIn: boolean;
+  askConfirm: boolean = false;
+  productAdding: Product;
   userSubscriber: Subscription;
   productList: Product[] = [];
   productSubscriber: Subscription;
-  constructor(private store$: Store<AppState>,
-              private productsService: ProductsService,
+  constructor(private productsService: ProductsService,
+              private purchaseService: PurchasesService,
+              private userService: UserService,
               private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
-    this.userSubscriber = this.store$.pipe(select(selectUserInfo)).subscribe((data) => (this.user = data));
+    this.userSubscriber = this.userService.loadUserFromStore().subscribe((user) => this.user = user);
+    this.loggedIn = Object.keys(this.user).includes("userID");
 
     this.productSubscriber = this.productsService.wholeList().subscribe((data: Product[]) => {
       this.productList = data;
@@ -35,8 +36,23 @@ export class MainPageComponent implements OnInit, OnDestroy {
     });
   }
 
+  askConfirmation(product: Product): void {
+    this.askConfirm = true;
+    this.productAdding = product;
+  }
+
+  answerAction(product: Product, event: { answer: boolean, count: number }): void {
+    if (event.answer) { this.addToBasket(product, event.count); }
+    this.askConfirm = false;
+  }
+
+  addToBasket(product: Product, count: number): void {
+    this.purchaseService.addPurchase(new Purchase(product, count));
+    console.log(`${product.title} добавлен в корзину`);
+  }
+
   logout(): void {
-    this.store$.dispatch(logout());
+    this.userService.logout();
   }
 
   ngOnDestroy(): void {

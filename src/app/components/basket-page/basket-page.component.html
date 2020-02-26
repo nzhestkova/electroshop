@@ -1,6 +1,27 @@
-<p>basket-page works!</p>
-<div>
-  <span *ngFor="let product of products">
-    {{product.productID}} {{product.title}} {{product.price}}
-  </span>
+<div class="basket">
+  <table [ngClass]="{'basket-table': purchases.length, 'basket-empty': !purchases.length}">
+    <thead>
+    <tr *ngIf="purchases.length">
+      <th>Товар</th>
+      <th>Количество</th>
+      <th>Стоимость</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngIf="!purchases.length">
+      <td><i>&lt; Пока ничего нет &gt;</i></td>
+      <td><i><a routerLink="">За покупками</a></i></td>
+    </tr>
+    <tr *ngFor="let purchase of purchases">
+      <td>{{purchase.product.title}}</td>
+      <td>{{purchase.count}}</td>
+      <td>{{purchase.product.price * purchase.count | currency}}</td>
+      <td>
+        <button (click)="removePurchase(purchase)">Удалить</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <button class="basket-clear" *ngIf="purchases.length" (click)="clearBasket()">Очистить корзину</button>
+  <span *ngIf="purchases.length" class="basket-total">Total: {{totalAmount | currency}}</span>
 </div>

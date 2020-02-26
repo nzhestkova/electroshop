@@ -5,5 +5,5 @@ import { userReducer } from "./user.reducer";
 
 export const appReducers: ActionReducerMap<AppState> = {
   user: userReducer,
-  purchase: basketReducer,
+  basket: basketReducer,
 };

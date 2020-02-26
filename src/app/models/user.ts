@@ -1,4 +1,4 @@
-import { Product } from "./product";
+import { Product, Purchase } from "./product";
 
 export class User {
   userID: number;
@@ -19,6 +19,17 @@ export class User {
     this.username = username;
   }
 }
+
+export class Anonymous {
+  username: string;
+  purchases: Purchase[];
+  constructor() {
+    this.username = "Гость";
+    this.purchases = [];
+  }
+}
+
+
 
 class Address {
   country: string;

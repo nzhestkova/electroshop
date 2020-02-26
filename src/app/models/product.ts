@@ -8,3 +8,12 @@ export class Product {
     this.price = price;
   }
 }
+
+export class Purchase {
+  product: Product;
+  count: number;
+  constructor(product: Product, count: number) {
+    this.product = product;
+    this.count = count;
+  }
+}

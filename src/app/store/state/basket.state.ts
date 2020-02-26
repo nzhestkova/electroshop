@@ -1,9 +1,9 @@
-import { Product } from "../../models/product";
+import { Purchase } from "../../models/product";
 
 export interface BasketState {
-  product: Product[];
+  purchases: Purchase[];
 }
 
 export const initialBasketState: BasketState = {
-  product: [],
+  purchases: [],
 };

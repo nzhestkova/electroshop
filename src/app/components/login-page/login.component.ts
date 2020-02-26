@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { UserService } from "../../services/new-user-service/user.service";
+import { PurchasesService } from "../../services/purchases/purchases.service";
 import { userLogin } from "../../store/actions/user.actions";
 import { AppState } from "../../store/state/app.state";
 
@@ -10,7 +11,8 @@ import { AppState } from "../../store/state/app.state";
   selector: "app-login",
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.less"],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [PurchasesService]
 })
 export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
@@ -29,6 +31,7 @@ export class LoginComponent implements OnInit {
   };
 
   constructor(private service: UserService,
+              private basketService: PurchasesService,
               private store$: Store<AppState>,
               private router: Router,
               private cdr: ChangeDetectorRef) {
@@ -63,6 +66,7 @@ export class LoginComponent implements OnInit {
         console.log(data);
         if (data.data) {
           this.store$.dispatch(userLogin({userInfo: data.data}));
+          this.basketService.loadOnStore(data.data.purchases);
           this.router.navigate([""]).then();
         } else {
           if (data.error.userPass === false) { this.authorizationErrors.userNotPass = true; }

@@ -1,0 +1,15 @@
+<div class="popup-background">
+  <div class="popup">
+    <span class="popup-element"><b>Подтверждение</b></span>
+    <span class="popup-element">{{product.title}}</span>
+    <span class="popup-element">Стоимость: {{product.price * count | currency}}</span>
+    <label class="popup-element">
+      <span>Кол-во</span>
+      <input type="number" min="1" max="30" [(ngModel)]="count">
+    </label>
+    <div class="popup-confirm">
+      <button class="popup-button" (click)="chosen(false)">Отмена</button>
+      <button class="popup-button" (click)="chosen(true)">Добавить</button>
+    </div>
+  </div>
+</div>
