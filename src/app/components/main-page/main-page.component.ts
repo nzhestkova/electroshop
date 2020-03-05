@@ -14,12 +14,17 @@ import { PurchasesService } from "../../services/purchases/purchases.service";
 })
 export class MainPageComponent implements OnInit, OnDestroy {
   user: User | Anonymous;
+  loadError = {
+    error: false,
+    message: "",
+  };
   loggedIn: boolean;
   askConfirm: boolean = false;
   productAdding: Product;
   userSubscriber: Subscription;
   productList: Product[] = [];
   productSubscriber: Subscription;
+
   constructor(private productsService: ProductsService,
               private purchaseService: PurchasesService,
               private userService: UserService,
@@ -29,11 +34,20 @@ export class MainPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userSubscriber = this.userService.loadUserFromStore().subscribe((user) => this.user = user);
     this.loggedIn = Object.keys(this.user).includes("userID");
+    this.reload();
+  }
 
+  reload(): void {
     this.productSubscriber = this.productsService.wholeList().subscribe((data: Product[]) => {
-      this.productList = data;
-      this.cdr.markForCheck();
-    });
+        this.loadError.error = false;
+        this.productList = data;
+        this.cdr.markForCheck();
+      },
+      () => {
+        this.loadError.error = true;
+        this.loadError.message = "При загрузке данных произошла ошибка";
+        this.cdr.markForCheck();
+      });
   }
 
   askConfirmation(product: Product): void {
@@ -42,7 +56,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   answerAction(product: Product, event: { answer: boolean, count: number }): void {
-    if (event.answer) { this.addToBasket(product, event.count); }
+    if (event.answer) {
+      this.addToBasket(product, event.count);
+    }
     this.askConfirm = false;
   }
 

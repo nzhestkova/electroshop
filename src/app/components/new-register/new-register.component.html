@@ -1,98 +1,109 @@
-<div class="form-container">
-  <form (input)="enableButton()" (ngSubmit)="signUp()" [formGroup]="registerForm" class="form" novalidate>
-    <div class="form-group" formGroupName="fullName">
-      <label class="form-field">
-        <span>Ваше имя:</span>
-        <input class="form-field-input" formControlName="name">
-      </label>
-      <label class="form-field">
-        <span>Ваша фамилия:</span>
-        <input class="form-field-input" formControlName="surname">
-      </label>
-    </div>
-    <div class="form-field">
-      <span>Придумайте логин:</span>
-      <label class="form-group">
-        <input (input)="timeoutCheck()" class="form-field-input" formControlName="login">
-        <label *ngIf="registerForm.get('login').valid" class="message">
-          <span *ngIf="timerForCheck" class="message-undefined">⚠ проверяем</span>
-          <label class="message">
-            <span *ngIf="!timerForCheck && !userExistError" class="message-unique">✓ логин свободен</span>
-            <span *ngIf="!timerForCheck && userExistError" class="message-non-unique">✕ логин занят</span>
+<div class="window">
+  <form (input)="enableButton()"
+        (ngSubmit)="signUp()"
+        [formGroup]="registerForm"
+        class="form" novalidate>
+    <span class="window-header">Регистрация</span>
+    <div class="form-controls">
+      <div formGroupName="fullName" class="form-group">
+        <label class="form-field">
+          <span class="form-field-name">Ваше имя:</span>
+          <input formControlName="name" class="form-field-input">
+        </label>
+        <label class="form-field">
+          <span class="form-field-name">Ваша фамилия:</span>
+          <input formControlName="surname" class="form-field-input">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="form-field">
+          <span class="form-field-name">Придумайте логин:</span>
+          <input (input)="timeoutCheck()" formControlName="login" class="form-field-input">
+        </label>
+        <label class="form-field">
+          <label *ngIf="registerForm.get('login').valid" class="message">
+            <span *ngIf="timerForCheck" class="message-undefined">⚠ проверяем</span>
+            <label class="message">
+              <span *ngIf="!timerForCheck && !userExistError" class="message-unique">✓ логин свободен</span>
+              <span *ngIf="!timerForCheck && userExistError" class="message-non-unique">✕ логин занят</span>
+            </label>
+          </label>
+          <label *ngIf="registerForm.get('login').invalid" class="message">
+            <span *ngIf="registerForm.get('login').hasError('required')"
+                  class="message-undefined">⚠ заполните поле</span>
+            <span *ngIf="registerForm.get('login').hasError('pattern')"
+                  class="message-undefined">⚠ некорректный логин</span>
+            <span *ngIf="registerForm.get('login').hasError('minlength')" class="message-undefined">⚠ слишком короткий логин</span>
           </label>
         </label>
-        <label *ngIf="registerForm.get('login').invalid" class="message">
-          <span *ngIf="registerForm.get('login').hasError('required')" class="message-undefined">⚠ заполните поле</span>
-          <span *ngIf="registerForm.get('login').hasError('pattern')"
-                class="message-undefined">⚠ некорректный логин</span>
-          <span *ngIf="registerForm.get('login').hasError('minlength')" class="message-undefined">⚠ слишком короткий логин</span>
+      </div>
+      <div formGroupName="password">
+        <div class="form-field">
+          <span class="form-field-name">Придумайте пароль:</span>
+          <label>
+            <input formControlName="newPassword" type="password" class="form-field-input">
+            <input appShowPassword type="checkbox" class="form-field-input">
+          </label>
+        </div>
+        <label class="form-field">
+          <span class="form-field-name">Повторите пароль:</span>
+          <label class="form-field-password">
+            <input class="form-field-input" formControlName="confirmNewPassword" type="password">
+            <input appShowPassword type="checkbox">
+          </label>
         </label>
-      </label>
+      </div>
     </div>
-    <div formGroupName="password">
-      <label class="form-field">
-        <span>Придумайте пароль:</span>
-        <label class="form-field-password">
-          <input class="form-field-input" formControlName="newPassword" type="password">
-          <input appShowPassword type="checkbox">
-        </label>
-      </label>
-      <label class="form-field">
-        <span>Повторите пароль:</span>
-        <label class="form-field-password">
-          <input class="form-field-input" formControlName="confirmNewPassword" type="password">
-          <input appShowPassword type="checkbox">
-        </label>
-      </label>
-    </div>
-    <input class="form-button form-button-submit" formControlName="submit" type="submit">
+    <label class="form-button">
+      <input class="form-button form-button-submit" formControlName="submit" type="submit">
+    </label>
   </form>
-  <div class="hint">
-    <span class="hint-text-item"><b>Регистрация</b></span>
-    <span class="hint-text-item">Выполните шаги:</span>
-    <div class="hint-text" *ngIf="registerForm.get('fullName').invalid">
-      <span class="hint-text-item">⚠</span>
-      <span class="hint-text-item">Введите свои имя и фамилию, избегайте пробелов и знаков препинания</span>
-    </div>
-    <div class="hint-text" *ngIf="registerForm.get('fullName').valid">
-      <span class="hint-text-item">✓</span>
-      <span class="hint-text-item">Поля <b><i>полного имени</i></b> заполнены</span>
-    </div>
-    <div *ngIf="registerForm.get('login').invalid" class="hint-text">
-      <span class="hint-text-item">⚠</span>
-      <span class="hint-text-item">
-        Придумайте логин, используя только латинские буквы, символы подчеркивания и цифры
-      </span>
-    </div>
-    <div *ngIf="registerForm.get('login').invalid || userExistError" class="hint-text">
-      <span class="hint-text-item" *ngIf="userExistError"><b>⚠</b></span>
-      <span class="hint-text-item" *ngIf="userExistError"><b>Если логин занят, попробуйте другой</b></span>
-      <span class="hint-text-item" *ngIf="!userExistError"><b>✓</b></span>
-      <span class="hint-text-item" *ngIf="!userExistError"><b>Логин свободен</b></span>
-    </div>
-    <div *ngIf="registerForm.get('login').valid && !userExistError" class="hint-text">
-      <span class="hint-text-item">✓</span>
-      <span class="hint-text-item">Поле <b><i>логин</i></b> заполнено верно</span>
-    </div>
-    <div *ngIf="registerForm.get('password').valid" class="hint-text">
-      <span class="hint-text-item">✓</span>
-      <span class="hint-text-item"><b><i>Пароль</i></b> принят</span>
-    </div>
-    <div class="hint-text" *ngIf="registerForm.get('password').invalid">
-      <span class="hint-text-item">⚠</span>
-      <span class="hint-text-item">Придумайте пароль, который будет содержать цифры, буквы и знаки подчеркивания</span>
-    </div>
-    <div class="hint-text"
-      *ngIf="registerForm.get('password.newPassword').hasError('minlength') ||
-       registerForm.get('password.newPassword').hasError('maxlength') ||
-       registerForm.get('password.confirmNewPassword').hasError('minlength') ||
-       registerForm.get('password.confirmNewPassword').hasError('maxlength')">
-      <span class="hint-text-item"><b>⚠</b></span>
-      <span class="hint-text-item"><b>Минимальная длина пароля - 8 символов, а максимальная - 16</b></span>
-    </div>
-    <div class="hint-text" *ngIf="registerForm.get('password.confirmNewPassword').hasError('required')">
-      <span class="hint-text-item">⚠</span>
-      <span class="hint-text-item">Для подтверждения пароля введите его ещё раз</span>
-    </div>
-  </div>
+  <!--  <div class="hint">-->
+  <!--    <span class="hint-text-item"><b>Регистрация</b></span>-->
+  <!--    <span class="hint-text-item">Выполните шаги:</span>-->
+  <!--    <div class="hint-text" *ngIf="registerForm.get('fullName').invalid">-->
+  <!--      <span class="hint-text-item">⚠</span>-->
+  <!--      <span class="hint-text-item">Введите свои имя и фамилию, избегайте пробелов и знаков препинания</span>-->
+  <!--    </div>-->
+  <!--    <div class="hint-text" *ngIf="registerForm.get('fullName').valid">-->
+  <!--      <span class="hint-text-item">✓</span>-->
+  <!--      <span class="hint-text-item">Поля <b><i>полного имени</i></b> заполнены</span>-->
+  <!--    </div>-->
+  <!--    <div *ngIf="registerForm.get('login').invalid" class="hint-text">-->
+  <!--      <span class="hint-text-item">⚠</span>-->
+  <!--      <span class="hint-text-item">-->
+  <!--        Придумайте логин, используя только латинские буквы, символы подчеркивания и цифры-->
+  <!--      </span>-->
+  <!--    </div>-->
+  <!--    <div *ngIf="registerForm.get('login').invalid || userExistError" class="hint-text">-->
+  <!--      <span class="hint-text-item" *ngIf="userExistError"><b>⚠</b></span>-->
+  <!--      <span class="hint-text-item" *ngIf="userExistError"><b>Если логин занят, попробуйте другой</b></span>-->
+  <!--      <span class="hint-text-item" *ngIf="!userExistError"><b>✓</b></span>-->
+  <!--      <span class="hint-text-item" *ngIf="!userExistError"><b>Логин свободен</b></span>-->
+  <!--    </div>-->
+  <!--    <div *ngIf="registerForm.get('login').valid && !userExistError" class="hint-text">-->
+  <!--      <span class="hint-text-item">✓</span>-->
+  <!--      <span class="hint-text-item">Поле <b><i>логин</i></b> заполнено верно</span>-->
+  <!--    </div>-->
+  <!--    <div *ngIf="registerForm.get('password').valid" class="hint-text">-->
+  <!--      <span class="hint-text-item">✓</span>-->
+  <!--      <span class="hint-text-item"><b><i>Пароль</i></b> принят</span>-->
+  <!--    </div>-->
+  <!--    <div class="hint-text" *ngIf="registerForm.get('password').invalid">-->
+  <!--      <span class="hint-text-item">⚠</span>-->
+  <!--      <span class="hint-text-item">Придумайте пароль, который будет содержать цифры, буквы и знаки подчеркивания</span>-->
+  <!--    </div>-->
+  <!--    <div class="hint-text"-->
+  <!--      *ngIf="registerForm.get('password.newPassword').hasError('minlength') ||-->
+  <!--       registerForm.get('password.newPassword').hasError('maxlength') ||-->
+  <!--       registerForm.get('password.confirmNewPassword').hasError('minlength') ||-->
+  <!--       registerForm.get('password.confirmNewPassword').hasError('maxlength')">-->
+  <!--      <span class="hint-text-item"><b>⚠</b></span>-->
+  <!--      <span class="hint-text-item"><b>Минимальная длина пароля - 8 символов, а максимальная - 16</b></span>-->
+  <!--    </div>-->
+  <!--    <div class="hint-text" *ngIf="registerForm.get('password.confirmNewPassword').hasError('required')">-->
+  <!--      <span class="hint-text-item">⚠</span>-->
+  <!--      <span class="hint-text-item">Для подтверждения пароля введите его ещё раз</span>-->
+  <!--    </div>-->
+  <!--  </div>-->
 </div>

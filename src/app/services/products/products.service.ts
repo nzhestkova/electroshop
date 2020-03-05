@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
+import { catchError } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
 
 @Injectable({
@@ -12,6 +13,11 @@ export class ProductsService {
   }
 
   wholeList(): Observable<Object> {
-    return this._http.get(this.url);
+    return this._http.get(this.url).pipe(
+      catchError(error => {
+        console.log(error);
+        return throwError(error);
+      }),
+    );
   }
 }

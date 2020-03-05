@@ -1,7 +1,72 @@
 {
   "rulesDirectory": [
-    "node_modules/codelyzer"
+    "node_modules/codelyzer",
+    "node_modules/rxjs-tslint-rules"
   ],
+  "rxjs-no-connectable": true,
+  "rxjs-no-create": true,
+  "rxjs-no-exposed-subjects": true,
+  "rxjs-no-ignored-replay-buffer": true,
+  "rxjs-no-unsafe-takeuntil": {
+    "options": [
+      {
+        "allow": [
+          "count",
+          "defaultIfEmpty",
+          "endWith",
+          "every",
+          "finalize",
+          "finally",
+          "isEmpty",
+          "last",
+          "max",
+          "min",
+          "publish",
+          "publishBehavior",
+          "publishLast",
+          "publishReplay",
+          "reduce",
+          "share",
+          "shareReplay",
+          "skipLast",
+          "takeLast",
+          "throwIfEmpty",
+          "toArray"
+        ]
+      }
+    ]
+  },
+  "rxjs-no-unsafe-switchmap": {
+    "options": [
+      {
+        "disallow": [
+          "add",
+          "create",
+          "delete",
+          "post",
+          "put",
+          "remove",
+          "set",
+          "update"
+        ],
+        "observable": "action(s|\\$)?"
+      }
+    ]
+  },
+  "rxjs-no-unsafe-catch": true,
+  "rxjs-no-unsafe-first": true,
+  "rxjs-no-index": true,
+  "rxjs-no-subject-unsubscribe": true,
+  "rxjs-no-async-subscribe": true,
+  "rxjs-no-redundant-notify": true,
+  "rxjs-no-topromise": true,
+  "rxjs-prefer-observer": true,
+  "rxjs-no-nested-subscribe": true,
+  "rxjs-no-unbound-methods": true,
+  "rxjs-no-subject-value": true,
+  "rxjs-no-subclass": true,
+  "rxjs-no-internal": true,
+  "rxjs-no-ignored-notifier": true,
   "extends": [
     "codelyzer"
   ],

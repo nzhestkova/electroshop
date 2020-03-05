@@ -1,10 +1,10 @@
 import {sign} from "js-crypto-rsa";
 
-const rsa = require("js-crypto-rsa")
+const rsa = require("js-crypto-rsa");
 
-console.log(rsa.generateKey(2048).then( (key) => {
-
-} ));
+// console.log(rsa.generateKey(2048).then( (key) => {
+//
+// } ));
 
 const publicJwk = {kty: 'RSA', n: '...', e: '...'}; // public key
 const privateJwk = {ktyp: 'RSA', n: 'P-256', e: '...', p: '...', q: '...', dp: '...', dq: '...', qi: '...'}; // paired private key
@@ -19,7 +19,7 @@ rsa.sign(
     name: 'RSA-PSS', // default. 'RSASSA-PKCS1-v1_5' is also available.
     saltLength: 64
   }
-).then( (signature) => {
+).then( () => {
   // now you get the signature in Uint8Array
   return rsa.verify(
     msg,
@@ -31,6 +31,6 @@ rsa.sign(
       saltLength: 64 // default is the same as hash length
     }
   );
-}).then( (valid) => {
+}).then( () => {
   // now you get the result of verification in boolean
 });

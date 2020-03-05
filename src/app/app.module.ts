@@ -7,6 +7,7 @@ import { StoreModule } from "@ngrx/store";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BasketPageComponent } from "./components/basket-page/basket-page.component";
+import { InfoComponent } from "./components/info/info.component";
 import { LoginComponent } from "./components/login-page/login.component";
 import { MainPageComponent } from "./components/main-page/main-page.component";
 import { NewRegisterComponent } from "./components/new-register/new-register.component";
@@ -15,6 +16,7 @@ import { PopupCommonComponent } from "./components/popup-common/popup-common.com
 import { PurchaseAddPopupComponent } from "./components/purchase-add-popup/purchase-add-popup.component";
 import { EditPersonalDataComponent } from "./components/user-page/edit-personal-data/edit-personal-data.component";
 import { UserPageComponent } from "./components/user-page/user-page.component";
+import { InfoDirective } from "./directives/info/info.directive";
 import { ShowPasswordDirective } from "./directives/show-password/show-password.directive";
 import { UserService } from "./services/new-user-service/user.service";
 import { PurchasesService } from "./services/purchases/purchases.service";
@@ -33,6 +35,8 @@ import { appReducers } from "./store/reducers/app.reducers";
     BasketPageComponent,
     PurchaseAddPopupComponent,
     PopupCommonComponent,
+    InfoDirective,
+    InfoComponent,
   ],
   imports: [
     BrowserModule,

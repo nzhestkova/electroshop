@@ -43,7 +43,7 @@ fs.readFile("./src/server/products.json", "utf8", function (error, data) {
 
 // для проверки загрузки
 let productId = 1235445;
-for (let i=1; i<101; i++) {
+for (let i=1; i<100; i++) {
   productList.list.push({
     productID: productId++,
     title: `product #${i}`,
@@ -73,8 +73,6 @@ app.get("/user", function (request, response) {
     } else {
       response.send({ error: { userExist: false } });
     }
-  } else {
-    response.send(userList.list);
   }
   response.end();
 });

@@ -15,7 +15,11 @@
 </div>
 <div class="products">
   <ng-template #loading>
-    <div class="products-load">Загружаем..</div>
+    <div *ngIf="!loadError.error" class="products-load">Загружаем..</div>
+    <div *ngIf="loadError.error" class="products-load">
+      <span>{{loadError.message}}</span>
+      <button (click)="reload()" *ngIf="loadError.error">Reload</button>
+    </div>
   </ng-template>
   <table class="table" *ngIf="productList.length else loading">
     <thead>
