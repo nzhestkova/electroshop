@@ -14,14 +14,17 @@
   </div>
 </div>
 <div class="products">
-  <table class="products-list">
+  <ng-template #loading>
+    <div class="products-load">Загружаем..</div>
+  </ng-template>
+  <table class="table" *ngIf="productList.length else loading">
     <thead>
     </thead>
     <tbody>
-    <tr *ngFor="let product of productList">
-      <td class="products-list-cell">{{product.title}}</td>
-      <td class="products-list-cell">{{product.price | currency}}</td>
-      <td><button (click)="askConfirmation(product)">+</button></td>
+    <tr *ngFor="let product of productList" class="table-row">
+      <td class="table-cell">{{product.title}}</td>
+      <td class="table-cell">{{product.price | currency}}</td>
+      <td class="table-cell"><button (click)="askConfirmation(product)">+</button></td>
     </tr>
     <app-purchase-add-popup *ngIf="askConfirm"
                             [product]="productAdding"

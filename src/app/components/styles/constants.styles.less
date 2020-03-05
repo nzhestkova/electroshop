@@ -1,0 +1,55 @@
+@small-space: 0.2em;
+@space: 0.5em;
+@huge-space: 0.8em;
+@font-style: "Book Antiqua", sans-serif;
+@font-size: 1.2em;
+@main-color: #ffcab1;
+@grey-color: #a4a4a4;
+@blue-color: lighten(desaturate(#3f34ff, 50%), 15%);
+@saturate-blue-color: lighten(desaturate(#3f34ff, 30%), 10%);
+@border-color: darken(@main-color, 10%);
+@border-grey-color: darken(@grey-color, 10%);
+@border-radius: 5px;
+@opacity-background: rgba(0, 0, 0, 0.71);
+
+.column-display {
+  display: flex;
+  flex-direction: column;
+}
+
+.window-header {
+  padding: @small-space;
+  text-align: center;
+  border-top-left-radius: @border-radius;
+  border-top-right-radius: @border-radius;
+  background: lighten(@grey-color, 10%);
+  font-weight: bold;
+}
+
+.window {
+  border-radius: @border-radius;
+  background: lighten(@grey-color, 30%);
+  font-size: @font-size;
+}
+
+.button-common-style {
+  outline: none;
+  padding: @small-space 1.5em;
+  font-size: 0.8em;
+  border-radius: @border-radius;
+  margin: @small-space auto;
+}
+
+.router-content {
+  display: flex;
+  flex-direction: column;
+  font-size: @font-size;
+}
+
+.load {
+  margin: 10em auto;
+}
+
+.link {
+  color: @saturate-blue-color;
+}

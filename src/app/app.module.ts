@@ -11,6 +11,7 @@ import { LoginComponent } from "./components/login-page/login.component";
 import { MainPageComponent } from "./components/main-page/main-page.component";
 import { NewRegisterComponent } from "./components/new-register/new-register.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
+import { PopupCommonComponent } from "./components/popup-common/popup-common.component";
 import { PurchaseAddPopupComponent } from "./components/purchase-add-popup/purchase-add-popup.component";
 import { EditPersonalDataComponent } from "./components/user-page/edit-personal-data/edit-personal-data.component";
 import { UserPageComponent } from "./components/user-page/user-page.component";
@@ -31,6 +32,7 @@ import { appReducers } from "./store/reducers/app.reducers";
     NewRegisterComponent,
     BasketPageComponent,
     PurchaseAddPopupComponent,
+    PopupCommonComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,17 @@
+@import "constants.styles.less";
+@back-color: #a4a4a4;
+@border-style: 2px solid @back-color;
+@inner-space: 3em;
+
+.table {
+  margin-top: @huge-space;
+  border-collapse: separate;
+  border-spacing: 0 0.5em;
+  background: @back-color;
+  &-row {
+    background: lighten(@back-color, 30%);
+  }
+  &-cell {
+    padding: @inner-space;
+  }
+}

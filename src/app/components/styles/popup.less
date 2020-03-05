@@ -1,0 +1,72 @@
+@import "constants.styles.less";
+@shadow-color: rgba(101, 101, 101, 0.8);
+@borders: 1.5em;
+@red-attention: #c65556;
+
+.popup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: @shadow-color;
+  display: flex;
+  &-message {
+    border-radius: @border-radius;
+    background: lighten(@grey-color, 30%);
+    margin: 10% auto auto auto;
+    box-shadow: 0 0 @huge-space rgba(0,0,0,0.5);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    &-head {
+      padding-top: @small-space;
+      padding-bottom: @small-space;
+      border-top-left-radius: @border-radius;
+      border-top-right-radius: @border-radius;
+      background: lighten(@grey-color, 10%);
+      font-weight: bold;
+      text-align: center;
+    }
+    &-block{
+      display: flex;
+      margin: auto;
+      padding: @huge-space @borders;
+    }
+    &-text {
+      margin: auto;
+    }
+    &-buttons {
+      display: flex;
+      padding: @huge-space 0;
+    }
+  }
+}
+
+.button {
+  .button-common-style;
+  border-bottom: 2px solid lighten(@grey-color, 5%);
+  background: lighten(@grey-color, 15%);
+}
+
+.cancel {
+  font-size: @font-size;
+  position: absolute;
+  left: 95%;
+  bottom: 93%;
+  padding: 0.6em;
+  background: @red-attention;
+  border: 1px solid darken(@red-attention, 70%);
+  border-radius: 100%;
+  outline: none;
+  &::after {
+    content: "×";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  &:hover {
+    background: darken(@red-attention, 20%);
+  }
+}

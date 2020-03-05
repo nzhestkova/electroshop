@@ -1,4 +1,4 @@
-const rsa = require("js-crypto-rsa");
+// const rsa = require("js-crypto-rsa");
 
 const express = require("express");
 const app = express();
@@ -40,6 +40,16 @@ fs.readFile("./src/server/products.json", "utf8", function (error, data) {
     productList.list.push(record);
   }
 });
+
+// для проверки загрузки
+let productId = 1235445;
+for (let i=1; i<101; i++) {
+  productList.list.push({
+    productID: productId++,
+    title: `product #${i}`,
+    price: i * 0.3
+  });
+}
 
 app.get("/", function (request, response) {
   response.send(`Server on port ${port}`);

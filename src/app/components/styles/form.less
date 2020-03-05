@@ -1,0 +1,58 @@
+@import "constants.styles.less";
+@light-blue: lighten(@blue-color, 5%);
+@more-light-blue: lighten(@blue-color, 6%);
+.main-view {
+  .column-display;
+}
+
+.form {
+  .window;
+  box-shadow: 0 0 @small-space @opacity-background;
+  .column-display;
+  margin: auto;
+  &-controls {
+    .column-display;
+    padding: @space @small-space;
+  }
+  &-group {
+    display: flex;
+  }
+  &-field {
+    .column-display;
+    margin: @space;
+    &-name {
+      font-style: italic;
+      margin-left: @small-space;
+    }
+    &-input {
+      margin: auto auto auto @small-space;
+      outline: none;
+    }
+  }
+  &-button {
+    display: flex;
+    margin-bottom: @huge-space;
+    &-cancel {
+      .button-common-style;
+      background: lighten(@grey-color, 15%);
+      border-bottom: 2px solid lighten(@grey-color, 5%);
+    }
+    &-submit {
+      .button-common-style;
+      color: white;
+      font-style: italic;
+      background: @blue-color;
+      border-color: @more-light-blue @light-blue @light-blue @more-light-blue;
+      &:disabled {
+        background: lighten(@grey-color, 20%);
+        border-color: lighten(@grey-color, 17%);
+        border-width: 2px;
+        border-style: solid;
+        color: @grey-color;
+      }
+      &:active {
+        border-color: @light-blue @light-blue @light-blue @more-light-blue;
+      }
+    }
+  }
+}

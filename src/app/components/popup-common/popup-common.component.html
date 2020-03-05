@@ -1,0 +1,19 @@
+<div class="popup-background">
+  <div class="popup">
+    <span class="popup-text"><b>Подтверждение</b></span>
+    <span class="popup-text">{{action}} этот продукт?</span>
+    <table class="popup-body">
+      <tbody>
+      <tr>
+        <td>{{purchaseInfo.product.title}}</td>
+        <td>× {{purchaseInfo.count}}</td>
+        <td>{{purchaseInfo.product.price * purchaseInfo.count | currency}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="popup-buttons">
+      <button class="popup-buttons-item">Отменить</button>
+      <button class="popup-buttons-item">{{action}}</button>
+    </div>
+  </div>
+</div>

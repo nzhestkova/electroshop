@@ -1,3 +1,5 @@
+@import "../styles/table.less";
+@import "../styles/constants.styles.less";
 @font: "Book Antiqua", serif;
 @background-theme: #d8dcde;
 @text-color: black;
@@ -20,16 +22,8 @@
   }
 }
 .products {
-  display: flex;
-  font-family: @font;
-  font-size: 1.2em;
-  background: @background-theme;
-  color: @text-color;
-  &-list {
-    border: 1px solid black;
-    flex-grow: 1;
-    &-cell {
-      padding: 2em;
-    }
+  .router-content;
+  &-load {
+    .load;
   }
 }

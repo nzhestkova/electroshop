@@ -1,7 +1,6 @@
 <div class="message">
   <div *ngIf="this.loginForm.get('submit').untouched" class="message-error">
     <div class="message-text">
-      <span class="message-text-element"><b>Вход</b></span>
       <span class="message-text-element">Введите <b><i>логин</i></b> и <b><i>пароль</i></b>, чтобы войти</span>
     </div>
   </div>
@@ -20,21 +19,27 @@
     </div>
   </div>
 </div>
-<div class="form-container">
+<div class="main-view">
   <form novalidate [formGroup]="loginForm" class="form"
         (input)="inputInfo()"
         (ngSubmit)="loginUser()">
-    <label class="form-field">
-      <span>Login:</span>
-      <input formControlName="login" class="form-field-input">
-    </label>
-    <label class="form-field">
-      <span>Password:</span>
-      <label class="form-field-password">
-        <input type="password" formControlName="password" class="form-field-input">
-        <input type="checkbox" appShowPassword>
+    <span class="window-header">Вход</span>
+    <div class="form-controls">
+      <label class="form-field">
+        <span class="form-field-name">Login:</span>
+        <input formControlName="login" class="form-field-input">
       </label>
-    </label>
-    <input type="submit" formControlName="submit" class="form-button form-button-submit">
+      <label class="form-field">
+        <span class="form-field-name">Password:</span>
+        <label class="form-field-password">
+          <input type="password" formControlName="password" class="form-field-input">
+          <input type="checkbox" appShowPassword class="form-field-input">
+        </label>
+      </label>
+    </div>
+    <div class="form-button">
+      <input type="submit" formControlName="submit" class="form-button-submit">
+    </div>
   </form>
+  <a routerLink="" class="back">← Назад</a>
 </div>
