@@ -1,4 +1,4 @@
-<div class="window">
+<div class="form-container">
   <form (input)="enableButton()"
         (ngSubmit)="signUp()"
         [formGroup]="registerForm"
@@ -7,17 +7,39 @@
     <div class="form-controls">
       <div formGroupName="fullName" class="form-group">
         <label class="form-field">
-          <span class="form-field-name">Ваше имя:</span>
+          <span class="form-field-name">
+            <label class="hint-text-sign">
+              <span>?</span>
+            <app-info [info]="'Введите свое имя без пробелов и знаков препинания'" class="hint-text">
+            </app-info>
+            </label>
+            Ваше имя:
+          </span>
           <input formControlName="name" class="form-field-input">
         </label>
         <label class="form-field">
-          <span class="form-field-name">Ваша фамилия:</span>
+          <span class="form-field-name">
+            <label class="hint-text-sign">
+              <span>?</span>
+            <app-info [info]="'Введите свою фамилию без пробелов и знаков препинания'" class="hint-text">
+            </app-info>
+            </label>
+            Ваша фамилия:
+          </span>
           <input formControlName="surname" class="form-field-input">
         </label>
       </div>
       <div class="form-group">
         <label class="form-field">
-          <span class="form-field-name">Придумайте логин:</span>
+          <span class="form-field-name">
+            <label class="hint-text-sign">
+              <span>?</span>
+            <app-info [info]="'Придумайте логин, используя только латинские буквы, символы подчеркивания и цифры'"
+                      class="hint-text">
+            </app-info>
+            </label>
+            Придумайте логин:
+          </span>
           <input (input)="timeoutCheck()" formControlName="login" class="form-field-input">
         </label>
         <label class="form-field">
@@ -39,7 +61,15 @@
       </div>
       <div formGroupName="password">
         <div class="form-field">
-          <span class="form-field-name">Придумайте пароль:</span>
+          <span class="form-field-name">
+            <label class="hint-text-sign">
+              <span>?</span>
+            <app-info [info]="'Придумайте пароль, который будет содержать цифры, буквы и знаки подчеркивания'"
+                      class="hint-text">
+            </app-info>
+            </label>
+            Придумайте пароль:
+          </span>
           <label>
             <input formControlName="newPassword" type="password" class="form-field-input">
             <input appShowPassword type="checkbox" class="form-field-input">
@@ -55,9 +85,10 @@
       </div>
     </div>
     <label class="form-button">
-      <input class="form-button form-button-submit" formControlName="submit" type="submit">
+      <input formControlName="submit" type="submit" class="form-button-submit">
     </label>
   </form>
+  <a routerLink="" class="back">← Назад</a>
   <!--  <div class="hint">-->
   <!--    <span class="hint-text-item"><b>Регистрация</b></span>-->
   <!--    <span class="hint-text-item">Выполните шаги:</span>-->
