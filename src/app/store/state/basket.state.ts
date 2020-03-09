@@ -1,4 +1,4 @@
-import { Purchase } from "../../models/product";
+import { Purchase } from "../../model/purchase";
 
 export interface BasketState {
   purchases: Purchase[];

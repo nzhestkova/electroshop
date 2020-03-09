@@ -1,29 +1,98 @@
 @import "../styles/table.less";
-@import "../styles/constants.styles.less";
-@font: "Book Antiqua", serif;
-@background-theme: #d8dcde;
-@text-color: black;
-.menu {
+
+.add-button {
+  background: white;
+  border-color: gray;
+  outline: none;
+  padding: @huge-space;
+}
+
+.link-panel {
   display: flex;
-  font-family: @font;
-  font-size: 1.2em;
-  &-text {
-    margin: auto;
-    padding-bottom: 0.5em;
-    &-link {
-      font-style: italic;
-      margin: 0.5em;
-      text-decoration: underline;
-      color: blue;
-      &:hover {
-        cursor: pointer;
+  &-item {
+    flex-grow: 1;
+  }
+}
+
+.control-button {
+  .functional-button;
+}
+
+.menu {
+  position: fixed;
+  display: flex;
+  top: 15%;
+  left: 0;
+  &:hover {
+    .menu-functions {
+      .column-display;
+    }
+  }
+  &-functions {
+    display: none;
+    border: 0.2em solid darken(@grey-color, 30%);
+    border-left: none;
+    border-bottom-right-radius: 10px;
+    background: white;
+    padding: @space;
+    &-header {
+      font-weight: bold;
+    }
+    &-block {
+      .column-display;
+      margin: @space @small-space;
+      &-header {
+        margin: 0 @space;
+      }
+      &-text {
+        margin: 0 @huge-space;
       }
     }
   }
+  &-button {
+    position: absolute;
+    left: 100%;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    border-left: none;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-color: transparent;
+    padding: 0.5em;
+    color: white;
+    background: darken(@grey-color, 30%);
+    &-inner-text {
+      margin: auto;
+    }
+  }
+  &-reset {
+    .functional-button;
+    margin: @space auto;
+    padding: @space;
+  }
 }
-.products {
-  .router-content;
-  &-load {
-    .load;
+
+.top-spaced {
+  margin-top: @small-space;
+}
+
+.admin-buttons {
+  .column-display;
+  &-remove {
+    margin: @space;
+    background: rgba(221, 0, 0, 0.7);
+    border-color: darken(rgba(221, 0, 0, 0.7), 5%);
+    color: white;
+    outline: none;
+    padding: @huge-space;
+  }
+  &-edit {
+    margin: @space;
+    background: rgba(30, 162, 255, 0.7);
+    border-color: darken(rgba(30, 162, 255, 0.7), 5%);
+    color: white;
+    outline: none;
+    padding: @huge-space;
   }
 }

@@ -19,6 +19,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    min-width: 15em;
     &-head {
       padding-top: @small-space;
       padding-bottom: @small-space;
@@ -31,10 +32,14 @@
     &-block{
       display: flex;
       margin: auto;
-      padding: @huge-space @borders;
+      padding: @huge-space;
     }
     &-text {
       margin: auto;
+    }
+    &-input{
+      outline: none;
+      margin-left: @space;
     }
     &-buttons {
       display: flex;
@@ -45,6 +50,7 @@
 
 .button {
   .button-common-style;
+  margin: @space auto;
   border-bottom: 2px solid lighten(@grey-color, 5%);
   background: lighten(@grey-color, 15%);
 }

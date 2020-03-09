@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component, DoCheck } from "@angular/core";
-import { Purchase } from "../../models/product";
-import { PurchasesService } from "../../services/purchases/purchases.service";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
+import { Product } from "../../model/product";
+import { Purchase } from "../../model/purchase";
+import { BasketStoreService } from "../../services/basket-store/basket-store.service";
 
 @Component({
   selector: "app-basket-page",
@@ -8,23 +10,70 @@ import { PurchasesService } from "../../services/purchases/purchases.service";
   styleUrls: ["./basket-page.component.less"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BasketPageComponent implements DoCheck {
-  purchases: Purchase[];
+export class BasketPageComponent implements OnInit, OnDestroy {
+  constructor(private basketStoreService: BasketStoreService,
+              private cdr: ChangeDetectorRef) {
+  }
+  purchaseList: Purchase[];
+  purchaseSubscriber: Subscription;
+
+  askConfirmationForPurchase: boolean = false;
+  askConfirmationForClear: boolean = false;
+  chosenProduct: Product;
+
   totalAmount: number;
 
-  constructor(private service: PurchasesService) {
+  displayPopupPurchase(product: Product): void {
+    this.askConfirmationForPurchase = true;
+    this.chosenProduct = product;
   }
 
-  removePurchase(purchase: Purchase): void {
-    this.service.removePurchase(purchase);
+  displayPopupBasketToggle(): void {
+    this.askConfirmationForClear = !this.askConfirmationForClear;
+  }
+
+  removePurchase(): void {
+    this.basketStoreService.removeProduct(this.chosenProduct.productID);
+    this.hidePopupPurchase();
+  }
+
+  countIncrement(purchase: Purchase): void {
+    if (purchase.count < 30) {
+      this.basketStoreService.countIncrement(purchase.product.productID);
+    }
+  }
+
+  countDecrement(purchase: Purchase): void {
+    if (purchase.count > 1) {
+      this.basketStoreService.countDecrement(purchase.product.productID);
+    }
+    if (purchase.count === 1) {
+      this.displayPopupPurchase(purchase.product);
+    }
   }
 
   clearBasket(): void {
-    this.service.clearBasket();
+    this.basketStoreService.clearBasket();
+    this.displayPopupBasketToggle();
   }
 
-  ngDoCheck(): void {
-    this.service.loadPurchases().subscribe(data => this.purchases = data);
-    this.totalAmount = this.purchases.reduce((sum, current) => sum + current.count * current.product.price, 0);
+  hidePopupPurchase(): void {
+    this.askConfirmationForPurchase = false;
+    delete this.chosenProduct;
+  }
+
+  ngOnInit(): void {
+    this.purchaseSubscriber = this.basketStoreService.loadBasket().subscribe(
+      purchases => {
+        this.purchaseList = purchases;
+        this.totalAmount = this.purchaseList.reduce(
+          (sum, current) => sum + current.count * current.product.price, 0,
+        );
+        this.cdr.markForCheck();
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.purchaseSubscriber.unsubscribe();
   }
 }

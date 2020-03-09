@@ -2,58 +2,56 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
-import { StoreModule } from "@ngrx/store";
 
+import { StoreModule } from "@ngrx/store";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BasketPageComponent } from "./components/basket-page/basket-page.component";
+import { ClearBasketPopupComponent } from "./components/clear-basket-popup/clear-basket-popup.component";
 import { InfoComponent } from "./components/info/info.component";
-import { LoginComponent } from "./components/login-page/login.component";
+import { LoginPageComponent } from "./components/login-page/login-page.component";
 import { MainPageComponent } from "./components/main-page/main-page.component";
-import { NewRegisterComponent } from "./components/new-register/new-register.component";
-import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
-import { PopupCommonComponent } from "./components/popup-common/popup-common.component";
-import { PurchaseAddPopupComponent } from "./components/purchase-add-popup/purchase-add-popup.component";
-import { EditPersonalDataComponent } from "./components/user-page/edit-personal-data/edit-personal-data.component";
-import { UserPageComponent } from "./components/user-page/user-page.component";
-import { InfoDirective } from "./directives/info/info.directive";
-import { ShowPasswordDirective } from "./directives/show-password/show-password.directive";
-import { UserService } from "./services/new-user-service/user.service";
-import { PurchasesService } from "./services/purchases/purchases.service";
+import { PopupAddPurchaseComponent } from "./components/popup-add-purchase/popup-add-purchase.component";
+import { RegisterPageComponent } from "./components/register-page/register-page.component";
+import { ShowPasswordDirective } from "./directives/password/show-password.directive";
+import { BasketStoreService } from "./services/basket-store/basket-store.service";
+import { ProductService } from "./services/products/product.service";
+import { UserStoreService } from "./services/user-store/user-store.service";
 import { appReducers } from "./store/reducers/app.reducers";
+
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
-    PageNotFoundComponent,
-    UserPageComponent,
-    EditPersonalDataComponent,
-    ShowPasswordDirective,
-    LoginComponent,
-    NewRegisterComponent,
+    PopupAddPurchaseComponent,
     BasketPageComponent,
-    PurchaseAddPopupComponent,
-    PopupCommonComponent,
-    InfoDirective,
+    ClearBasketPopupComponent,
+    LoginPageComponent,
+    ShowPasswordDirective,
+    RegisterPageComponent,
     InfoComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    StoreModule.forRoot(appReducers, {
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
-        strictActionSerializability: true,
-        strictStateSerializability: true,
-      }
-    }),
-    FormsModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        StoreModule.forRoot(appReducers, {
+            runtimeChecks: {
+                strictStateImmutability: true,
+                strictActionImmutability: true,
+                strictActionSerializability: true,
+                strictStateSerializability: true,
+            }
+        }),
+        FormsModule,
+        ReactiveFormsModule,
+    ],
+  providers: [
+    ProductService,
+    BasketStoreService,
+    UserStoreService,
   ],
-  providers: [UserService, PurchasesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,27 +1,34 @@
 import { createReducer, on } from "@ngrx/store";
-import { Purchase } from "../../models/product";
-import { addPurchase, clearBasket, loadPurchase, removePurchase } from "../actions/basket.actions";
+import { addPurchase, clearBasket, decrementCount, incrementCount, removePurchase } from "../actions/basket.actions";
 import { initialBasketState } from "../state/basket.state";
 
 export const basketReducer = createReducer(
   initialBasketState,
-  on(loadPurchase,
-    (state, action) => ({ ...state, purchases: action.purchases })),
-  on(addPurchase,
-    (state, action) => ({
-      ...state,
-      // action.purchase значительно облегчит ситуацию
-      // state.purchases.includes(action.purchase) ? map : concat
-      purchases: state.purchases.find((item: Purchase) => item.product === action.product)
-        ? state.purchases.map((item: Purchase) => item.product.productID === action.product.productID
-            ? new Purchase(item.product, item.count + action.count)
-            : item)
-        : state.purchases.concat([new Purchase(action.product, action.count)])
-    })),
-  on(removePurchase,
-    (state, action) => (
-      { ...state,
-        purchases: state.purchases.filter((item: Purchase) => item.product.productID !== action.product.productID)
-      })),
+  on(addPurchase, (state, action) => ({
+    ...state,
+    purchases: state.purchases.find(purchase => purchase.product.productID === action.product.productID)
+      ? state.purchases.map(purchase => purchase.product.productID === action.product.productID
+        ? { product: purchase.product, count: purchase.count + action.count }
+        : purchase)
+      : state.purchases.concat([{ product: action.product, count: action.count }])
+  })),
+  on(removePurchase, (state, action) => ({
+    ...state,
+    purchases: state.purchases.filter(item => item.product.productID !== action.productID),
+  })),
+  on(incrementCount, (state, action) => ({
+    ...state,
+    purchases: state.purchases.map(
+      purchase => purchase.product.productID === action.productID
+        ? { product: purchase.product, count: purchase.count + 1 }
+        : purchase)
+  })),
+  on(decrementCount, (state, action) => ({
+    ...state,
+    purchases: state.purchases.map(
+      purchase => purchase.product.productID === action.productID
+        ? { product: purchase.product, count: purchase.count - 1 }
+        : purchase)
+  })),
   on(clearBasket, () => initialBasketState),
 );

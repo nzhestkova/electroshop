@@ -1,23 +1,17 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { BasketPageComponent } from "./components/basket-page/basket-page.component";
-import { InfoComponent } from "./components/info/info.component";
-import { LoginComponent } from "./components/login-page/login.component";
+import { ClearBasketPopupComponent } from "./components/clear-basket-popup/clear-basket-popup.component";
+import { LoginPageComponent } from "./components/login-page/login-page.component";
 import { MainPageComponent } from "./components/main-page/main-page.component";
-import { NewRegisterComponent } from "./components/new-register/new-register.component";
-import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
-import { PopupCommonComponent } from "./components/popup-common/popup-common.component";
-import { UserPageComponent } from "./components/user-page/user-page.component";
+import { RegisterPageComponent } from "./components/register-page/register-page.component";
 
 const routes: Routes = [
   { path: "", component: MainPageComponent },
-  { path: "login", component: LoginComponent },
-  { path: "register", component: NewRegisterComponent },
-  { path: "register/info", component: InfoComponent },
-  { path: "debug/popup", component: PopupCommonComponent },
-  { path: "profile", component: UserPageComponent },
+  { path: "popup", component: ClearBasketPopupComponent },
   { path: "basket", component: BasketPageComponent },
-  { path: "**", component: PageNotFoundComponent},
+  { path: "login", component: LoginPageComponent },
+  { path: "register", component: RegisterPageComponent },
 ];
 
 @NgModule({

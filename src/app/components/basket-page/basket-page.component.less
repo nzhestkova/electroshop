@@ -1,23 +1,39 @@
-@space: 1em;
+@import "../styles/table.less";
+@buttons-size: 2em;
+@submit-color: #403aff;
 
-.basket {
+.link-panel {
   display: flex;
-  flex-direction: column;
-  padding: @space;
-  font-size: @space + 0.2;
-  &-table {
-    margin: @space;
-    text-align: center;
+  &-item {
+    flex-grow: 1;
   }
-  &-empty {
-    margin: auto;
-  }
-  &-total {
-    margin: @space 20% @space auto;
-    font-size: 1.2em;
-    color: #3e0b00;
-  }
-  &-clear {
-    margin: @space 0 @space auto;
-  }
+}
+
+.remove-button {
+  .functional-button;
+  padding: @huge-space;
+}
+
+.clear-button {
+  .functional-button;
+  margin: @space @huge-space;
+  padding: @huge-space;
+}
+
+.count-button {
+  .functional-button;
+  border-radius: 100%;
+  text-align: center;
+  width: @buttons-size;
+  height: @buttons-size;
+  margin: @space @huge-space;
+}
+
+.to-order-button {
+  margin: @space @huge-space;
+  padding: @huge-space;
+  outline: none;
+  color: white;
+  background: @submit-color;
+  border-color: darken(@submit-color, 5%);
 }

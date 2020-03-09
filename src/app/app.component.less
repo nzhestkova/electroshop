@@ -1,63 +1,63 @@
 @import "components/styles/constants.styles.less";
-@background-dark-theme: rgb(43, 46, 48);
-@background-light-theme: rgb(255, 255, 255);
-@text-light-color: lighten(black, 10%);
-@text-dark-color: darken(white, 20%);
-::-webkit-scrollbar {
-  width: @huge-space;
-  &-track {
-    -webkit-box-shadow: inset 0 0 @small-space rgba(0,0,0,0.3);
-    border-radius: @border-radius;
-  }
-  &-thumb {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-    border-radius: @border-radius;
-  }
-}
-.theme {
-  position: fixed;
-  width: 3em;
-  height: 3em;
-  right: 1em;
-  top: 1em;
-  border: 1px solid transparent;
-  border-radius: 100%;
-  outline: none;
-  &-icon {
-    line-height: 1em;
-    font-size: 1.5em;
-  }
-}
-.background {
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  padding-top: 0.5em;
-  overflow-y: scroll;
-}
-.light-theme {
-  background: @background-light-theme;
-  color: @text-light-color;
-  &-button {
-    background: darken(@background-dark-theme, 5%);
-    box-shadow: 0 0 0.5em darken(@background-dark-theme, 5%);;
-    &:hover {
-      background: darken(@background-dark-theme, 10%);
-      box-shadow: 0 0 1em darken(@background-dark-theme, 20%);
+@green-color: #179b3f;
+@red-color: #b61517;
+.buttons {
+  margin-top: @huge-space;
+  &-log {
+    display: flex;
+    &-el {
+      margin: auto;
+      outline: none;
     }
   }
 }
-.dark-theme {
-  background: @background-dark-theme;
-  color: @text-dark-color;
-  &-button {
-    background: darken(@background-light-theme, 10%);
-    box-shadow: 0 0 0.5em darken(@background-light-theme, 10%);
-    &:hover {
-      background: darken(@background-light-theme, 5%);
-      box-shadow: 0 0 1em @background-light-theme;
+
+.user-profile-buttons {
+  display: flex;
+  margin: auto @huge-space auto 0;
+}
+
+.register-button {
+  outline: none;
+  padding: @huge-space;
+  border-right: none;
+  background: #dadada;
+  border-color: #dadada;
+}
+
+.login-button {
+  outline: none;
+  padding: @huge-space;
+  color: white;
+  border-left: none;
+  background: @green-color;
+  border-color: @green-color;
+}
+
+.basket-button {
+  .button-common-style;
+  background: #dadada;
+  border-color: #dadada;
+  position: relative;
+  margin: 0 @huge-space 0 auto;
+  &-icon {
+    height: 1.7em;
+    width: 1.7em;
+  }
+  &-sign {
+    position: absolute;
+    color: white;
+    background: @red-color;
+    border-radius: 100%;
+    text-align: center;
+    width: 1.7em;
+    height: 1.7em;
+    margin-bottom: @space;
+    bottom: 50%;
+    right: -@huge-space;
+    .column-display;
+    &-text {
+      margin: auto;
     }
   }
 }

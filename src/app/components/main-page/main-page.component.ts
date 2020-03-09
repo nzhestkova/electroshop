@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
-import { Product, Purchase } from "../../models/product";
-import { Anonymous, User } from "../../models/user";
-import { UserService } from "../../services/new-user-service/user.service";
-import { ProductsService } from "../../services/products/products.service";
-import { PurchasesService } from "../../services/purchases/purchases.service";
+import { Product } from "../../model/product";
+import { BasketStoreService } from "../../services/basket-store/basket-store.service";
+import { ProductService } from "../../services/products/product.service";
+import { UserStoreService } from "../../services/user-store/user-store.service";
 
 @Component({
   selector: "app-main-page",
@@ -13,71 +12,56 @@ import { PurchasesService } from "../../services/purchases/purchases.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainPageComponent implements OnInit, OnDestroy {
-  user: User | Anonymous;
-  loadError = {
-    error: false,
-    message: "",
-  };
-  loggedIn: boolean;
-  askConfirm: boolean = false;
-  productAdding: Product;
-  userSubscriber: Subscription;
-  productList: Product[] = [];
-  productSubscriber: Subscription;
-
-  constructor(private productsService: ProductsService,
-              private purchaseService: PurchasesService,
-              private userService: UserService,
+  constructor(private productService: ProductService,
+              private userStoreService: UserStoreService,
+              private basketStoreService: BasketStoreService,
               private cdr: ChangeDetectorRef) {
   }
 
-  ngOnInit(): void {
-    this.userSubscriber = this.userService.loadUserFromStore().subscribe((user) => this.user = user);
-    this.loggedIn = Object.keys(this.user).includes("userID");
-    this.reload();
+  errorMark: boolean;
+  adminMode: boolean = false;
+
+  askConfirmation: boolean = false;
+  chosenProduct: Product;
+
+  productList: Product[];
+  productSubscriber: Subscription;
+
+  displayPopup(product: Product): void {
+    this.askConfirmation = true;
+    this.chosenProduct = product;
   }
 
-  reload(): void {
-    this.productSubscriber = this.productsService.wholeList().subscribe((data: Product[]) => {
-        this.loadError.error = false;
-        this.productList = data;
+  addProduct(count: number): void {
+    this.basketStoreService.addProduct(this.chosenProduct, count);
+    this.hidePopup();
+  }
+
+  hidePopup(): void {
+    this.askConfirmation = false;
+    delete this.chosenProduct;
+  }
+
+  ngOnInit(): void {
+    this.productSubscriber = this.productService.productList().subscribe(
+      products => {
+        this.productList = products;
+        this.errorMark = false;
         this.cdr.markForCheck();
       },
       () => {
-        this.loadError.error = true;
-        this.loadError.message = "При загрузке данных произошла ошибка";
+        this.errorMark = true;
         this.cdr.markForCheck();
       });
-  }
-
-  askConfirmation(product: Product): void {
-    this.askConfirm = true;
-    this.productAdding = product;
-  }
-
-  answerAction(product: Product, event: { answer: boolean, count: number }): void {
-    if (event.answer) {
-      this.addToBasket(product, event.count);
-    }
-    this.askConfirm = false;
-  }
-
-  addToBasket(product: Product, count: number): void {
-    this.purchaseService.addPurchase(new Purchase(product, count));
-    console.log(`${product.title} добавлен в корзину`);
-  }
-
-  logout(): void {
-    this.userService.logout();
+    this.userStoreService.adminMode().subscribe(
+      mode => {
+        this.adminMode = mode;
+        this.cdr.markForCheck();
+        },
+    );
   }
 
   ngOnDestroy(): void {
-    if (this.userSubscriber) {
-      this.userSubscriber.unsubscribe();
-    }
-
-    if (this.productSubscriber) {
-      this.productSubscriber.unsubscribe();
-    }
+    this.productSubscriber.unsubscribe();
   }
 }

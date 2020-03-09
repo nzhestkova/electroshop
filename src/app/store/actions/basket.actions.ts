@@ -1,24 +1,30 @@
 import { createAction, props } from "@ngrx/store";
-import { Purchase } from "../../models/product";
+import { Product } from "../../model/product";
 
-const LOAD_PURCHASES = "[Basket] purchases loaded";
-const ADD_PURCHASE = "[Basket] purchase added";
-const REMOVE_PURCHASE = "[Basket] purchase removed";
-const CLEAR_BASKET = "[Basket] all purchases removed";
-
-export const loadPurchase = createAction(
-  LOAD_PURCHASES,
-  props<{ purchases: Purchase[] }>(),
-);
+const ADD_PURCHASE = "[BASKET] added purchase";
+const REMOVE_PURCHASE = "[BASKET] remove purchase";
+const INCREMENT_COUNT = "[BASKET] product count edited (increment)";
+const DECREMENT_COUNT = "[BASKET] product count edited (decrement)";
+const CLEAR = "[BASKET] cleared";
 
 export const addPurchase = createAction(
   ADD_PURCHASE,
-  props<Purchase>(),
+  props<{ product: Product, count: number }>(),
 );
 
 export const removePurchase = createAction(
   REMOVE_PURCHASE,
-  props<Purchase>(),
+  props<{ productID: number }>(),
 );
 
-export const clearBasket = createAction(CLEAR_BASKET);
+export const incrementCount = createAction(
+  INCREMENT_COUNT,
+  props<{ productID: number }>(),
+);
+
+export const decrementCount = createAction(
+  DECREMENT_COUNT,
+  props<{ productID: number }>(),
+);
+
+export const clearBasket = createAction(CLEAR);

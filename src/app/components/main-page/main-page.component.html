@@ -1,39 +1,56 @@
-<div class="menu">
-  <div class="menu-text">
-    <span *ngIf="!loggedIn">Привет! </span>
-    <span *ngIf="loggedIn">Привет, {{user.username.name}} {{user.username.surname}}! </span>
-    <span>Добро пожаловать в магазин.</span>
-    <a *ngIf="!loggedIn" routerLink="login" class="menu-text-link">Login</a>
-    <a *ngIf="!loggedIn" routerLink="register" class="menu-text-link">Register</a>
-    <a *ngIf="loggedIn" (click)="logout()" class="menu-text-link">Logout</a>
-    <a *ngIf="loggedIn" routerLink="profile" class="menu-text-link">Profile</a>
-    <a routerLink="basket" class="menu-text-link">
-      <span>Basket</span>
-      <span *ngIf="user.purchases && user.purchases.length">({{user.purchases.length}})</span>
-    </a>
-  </div>
-</div>
-<div class="products">
-  <ng-template #loading>
-    <div *ngIf="!loadError.error" class="products-load">Загружаем..</div>
-    <div *ngIf="loadError.error" class="products-load">
-      <span>{{loadError.message}}</span>
-      <button (click)="reload()" *ngIf="loadError.error">Reload</button>
+<div class="products-list">
+  <div class="table-container">
+    <ng-template #loading class="table-container-loading">
+      <div *ngIf="!errorMark" class="table-container-loading">Загружаем..</div>
+      <div *ngIf="errorMark" class="table-container-loading">
+        <span>Ошибка при загрузке данных</span>
+      </div>
+    </ng-template>
+    <div class="menu">
+      <div class="menu-functions">
+        <span class="menu-functions-header">Сортировка</span>
+        <label class="menu-functions-block">
+          <span class="menu-functions-block-header">По цене</span>
+          <span class="menu-functions-block-text"><input type="radio" name="sort"> по возрастанию</span>
+          <span class="menu-functions-block-text"><input type="radio" name="sort"> по убыванию</span>
+        </label>
+        <span class="menu-functions-header">Фильтр</span>
+        <label class="menu-functions-block">
+          <span class="menu-functions-block-header">По цене</span>
+          <input type="range" class="menu-functions-block-text top-spaced">
+          <input type="range" class="menu-functions-block-text top-spaced">
+        </label>
+        <label class="menu-functions-block">
+          <span class="menu-functions-block-header">По категории</span>
+          <span class="menu-functions-block-text top-spaced"><input type="checkbox"> категория #1</span>
+          <span class="menu-functions-block-text top-spaced"><input type="checkbox"> категория #2</span>
+        </label>
+        <button class="menu-reset">Сбросить</button>
+      </div>
+      <button class="menu-button">
+        <span class="menu-button-inner-text">m</span>
+        <span class="menu-button-inner-text">e</span>
+        <span class="menu-button-inner-text">n</span>
+        <span class="menu-button-inner-text">u</span>
+      </button>
     </div>
-  </ng-template>
-  <table class="table" *ngIf="productList.length else loading">
-    <thead>
-    </thead>
-    <tbody>
-    <tr *ngFor="let product of productList" class="table-row">
-      <td class="table-cell">{{product.title}}</td>
-      <td class="table-cell">{{product.price | currency}}</td>
-      <td class="table-cell"><button (click)="askConfirmation(product)">+</button></td>
-    </tr>
-    <app-purchase-add-popup *ngIf="askConfirm"
-                            [product]="productAdding"
-                            (choiceMade)="answerAction(productAdding, $event)">
-    </app-purchase-add-popup>
-    </tbody>
-  </table>
+    <table *ngIf="productList else loading" class="table">
+      <tbody>
+      <tr *ngFor="let product of productList" class="table-row">
+        <td class="table-cell left-aligned">{{product.title}}</td>
+        <td class="table-cell center-aligned">{{product.price | currency}}</td>
+        <td class="table-cell right-aligned">
+          <button class="add-button" (click)="displayPopup(product)"> + Добавить в корзину</button>
+        </td>
+        <td class="table-cell admin-buttons" *ngIf="adminMode">
+          <button class="admin-buttons-edit">Изменить</button>
+          <button class="admin-buttons-remove">Удалить</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <app-popup-add-purchase [action]="'Добавить'" [product]="chosenProduct" [showCounter]="true" *ngIf="askConfirmation"
+                            (hidePopup)="hidePopup()" (confirmed)="addProduct($event)">
+    </app-popup-add-purchase>
+  </div>
 </div>

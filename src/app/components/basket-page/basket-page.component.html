@@ -1,27 +1,36 @@
-<div class="basket">
-  <table [ngClass]="{'basket-table': purchases.length, 'basket-empty': !purchases.length}">
-    <thead>
-    <tr *ngIf="purchases.length">
-      <th>Товар</th>
-      <th>Количество</th>
-      <th>Стоимость</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngIf="!purchases.length">
-      <td><i>&lt; Пока ничего нет &gt;</i></td>
-      <td><i><a routerLink="">За покупками</a></i></td>
-    </tr>
-    <tr *ngFor="let purchase of purchases">
-      <td>{{purchase.product.title}}</td>
-      <td>{{purchase.count}}</td>
-      <td>{{purchase.product.price * purchase.count | currency}}</td>
-      <td>
-        <button (click)="removePurchase(purchase)">Удалить</button>
+<div class="table-container">
+  <ng-template #empty>
+    <div class="table-container-loading">
+      <i>&lt; Пока ничего нет &gt;</i>
+      <i class="center-aligned"><a routerLink="" class="link">За покупками</a></i>
+    </div>
+  </ng-template>
+  <table *ngIf="purchaseList.length else empty" class="table">
+    <tr *ngFor="let purchase of purchaseList" class="table-row">
+      <td class="table-cell left-aligned">{{purchase.product.title}}</td>
+      <td class="table-cell center-aligned">
+        <button class="count-button" (click)="countIncrement(purchase)">+</button>
+        <span><b>{{purchase.count}}</b></span>
+        <button class="count-button" (click)="countDecrement(purchase)">-</button>
+      </td>
+      <td class="table-cell center-aligned">{{purchase.product.price * purchase.count | currency}}</td>
+      <td class="table-cell right-aligned">
+        <button (click)="displayPopupPurchase(purchase.product)" class="remove-button">Удалить</button>
       </td>
     </tr>
-    </tbody>
   </table>
-  <button class="basket-clear" *ngIf="purchases.length" (click)="clearBasket()">Очистить корзину</button>
-  <span *ngIf="purchases.length" class="basket-total">Total: {{totalAmount | currency}}</span>
+  <div *ngIf="purchaseList.length" class="link-panel">
+    <div class="left-aligned link-panel-item">
+      <button class="clear-button" routerLink="">← Продолжить покупки</button>
+    </div>
+    <div class="right-aligned link-panel-item">
+      <button class="clear-button" (click)="displayPopupBasketToggle()">Очистить корзину</button>
+      <button class="to-order-button">К оформлению заказа <span>{{totalAmount | currency}}</span> →</button>
+    </div>
+  </div>
+  <app-popup-add-purchase [action]="'Удалить'" [product]="chosenProduct" [showCounter]="false" *ngIf="askConfirmationForPurchase"
+                          (hidePopup)="hidePopupPurchase()" (confirmed)="removePurchase()">
+  </app-popup-add-purchase>
+  <app-clear-basket-popup *ngIf="askConfirmationForClear" (confirmed)="clearBasket()" (hidePopup)="displayPopupBasketToggle()">
+  </app-clear-basket-popup>
 </div>

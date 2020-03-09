@@ -1,0 +1,1 @@
+[{"userID":123123,"isAdmin":false,"username":{"name":"Auram","surname":"Graham"},"login":"aura_aura","password":"qwerty","orders":[123,145],"deferredPurchases":[{"product":{"productID":1235436,"title":"product #1","price":12},"count":1}]},{"userID":123123,"isAdmin":true,"username":{"name":"Mister","surname":"Administrator"},"login":"missadmin","password":"qwerty"}]

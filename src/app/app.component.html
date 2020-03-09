@@ -1,9 +1,17 @@
-<div class="background" [ngClass]="{'light-theme': !darkTheme, 'dark-theme': darkTheme}">
-  <router-outlet></router-outlet>
-<!--  <button class="theme"-->
-<!--          [ngClass]="{'light-theme-button': !darkTheme, 'dark-theme-button': darkTheme}"-->
-<!--          (click)="darkTheme = !darkTheme">-->
-<!--    <span class="theme-icon" *ngIf="darkTheme">💡</span>-->
-<!--    <span class="theme-icon" *ngIf="!darkTheme">🌙</span>-->
-<!--  </button>-->
+<div class="buttons">
+  <div class="buttons-log">
+    <button class="basket-button" routerLink="basket">
+      <img src="../assets/icons/cart.png" alt="cart" class="basket-button-icon">
+      <span class="basket-button-sign">
+        <span class="basket-button-sign-text">{{purchasesCount | async}}</span>
+      </span>
+    </button>
+    <div class="user-profile-buttons">
+      <button class="register-button" *ngIf="!userInfo" routerLink="register">Зарегистрироваться</button>
+      <button class="login-button" *ngIf="!userInfo" routerLink="login">Войти</button>
+      <span class="register-button" *ngIf="userInfo">{{userInfo.username.name}} {{userInfo.username.surname}}</span>
+      <button class="login-button" *ngIf="userInfo" (click)="logoutUser()">Выйти</button>
+    </div>
+  </div>
 </div>
+<router-outlet></router-outlet>

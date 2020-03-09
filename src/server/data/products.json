@@ -1,0 +1,50 @@
+[{
+  "productID": 1235436,
+  "title": "product #1",
+  "price": 12.35
+},
+  {
+    "productID": 1235437,
+    "title": "product #2",
+    "price": 12.12
+  },
+  {
+    "productID": 1235438,
+    "title": "product #3",
+    "price": 17.33
+  },
+  {
+    "productID": 1235439,
+    "title": "product #4",
+    "price": 17.33
+  },
+  {
+    "productID": 1235440,
+    "title": "product #5",
+    "price": 17.33
+  },
+  {
+    "productID": 1235441,
+    "title": "product #6",
+    "price": 17.33
+  },
+  {
+    "productID": 1235442,
+    "title": "product #7",
+    "price": 17.33
+  },
+  {
+    "productID": 1235443,
+    "title": "product #8",
+    "price": 17.33
+  },
+  {
+    "productID": 1235444,
+    "title": "product #9",
+    "price": 17.33
+  },
+  {
+    "productID": 1235445,
+    "title": "product #10",
+    "price": 20.33
+  }]

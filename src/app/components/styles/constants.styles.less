@@ -11,6 +11,8 @@
 @border-grey-color: darken(@grey-color, 10%);
 @border-radius: 5px;
 @opacity-background: rgba(0, 0, 0, 0.71);
+@buttons-background: white;
+@buttons-border-color: gray;
 
 .column-display {
   display: flex;
@@ -32,24 +34,40 @@
   font-size: @font-size;
 }
 
+.functional-button {
+  background: @buttons-background;
+  border-color: @buttons-border-color;
+  outline: none;
+}
+
 .button-common-style {
   outline: none;
   padding: @small-space 1.5em;
   font-size: 0.8em;
-  border-radius: @border-radius;
-  margin: @small-space auto;
 }
 
 .router-content {
-  display: flex;
-  flex-direction: column;
+  .column-display;
   font-size: @font-size;
 }
 
 .load {
   margin: 10em auto;
+  .column-display;
 }
 
 .link {
   color: @saturate-blue-color;
+}
+
+.right-aligned {
+  text-align: right;
+}
+
+.center-aligned {
+  text-align: center;
+}
+
+.left-aligned {
+  text-align: left;
 }

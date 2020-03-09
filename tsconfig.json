@@ -17,12 +17,7 @@
     "lib": [
       "es2018",
       "dom"
-    ],
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noImplicitReturns": true,
-    "noUnusedParameters": true,
-    "noImplicitAny": true
+    ]
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
